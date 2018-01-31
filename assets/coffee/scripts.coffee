@@ -6,11 +6,12 @@ $ () ->
 		e.preventDefault()
 		jqxhr = $.ajax
 			url: url,
-			method: "GET",
-			dataType: "jsonp",
+			method: 'GET',
+			dataType: 'jsonp',
 			data: $form.serializeObject()
 			error: (jqXHR, textStatus, errorThrown) ->
 				console.log jqXHR
+				console.log textStatus
 			success: (data, textStatus, jqXHR) ->
 				console.log data
 

@@ -28,6 +28,26 @@ fields:
             type: toggle
             default: true
             width: 1/2
+      email:
+        label: Email
+        fields:
+          label:
+            label: Label
+            type: text
+            width: 1/2
+          sheet_label:
+            label: Sheet Label
+            type: text
+            width: 1/2
+          size:
+            label: Size
+            type: text
+            width: 1/2
+          required:
+            label: Required
+            type: toggle
+            default: true
+            width: 1/2
       select:
         label: Select
         fields:

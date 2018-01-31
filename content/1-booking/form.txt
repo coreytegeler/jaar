@@ -10,10 +10,10 @@ Fields:
 
 - 
   label: Email
-  sheet_label: Email
+  sheet_label: email
   size: ""
   required: 'true'
-  _fieldset: text
+  _fieldset: email
 - 
   label: Type of Event
   sheet_label: type_of_event

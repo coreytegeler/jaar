@@ -7,11 +7,12 @@ $(function() {
     e.preventDefault();
     return jqxhr = $.ajax({
       url: url,
-      method: "GET",
-      dataType: "jsonp",
+      method: 'GET',
+      dataType: 'jsonp',
       data: $form.serializeObject(),
       error: function(jqXHR, textStatus, errorThrown) {
-        return console.log(jqXHR);
+        console.log(jqXHR);
+        return console.log(textStatus);
       },
       success: function(data, textStatus, jqXHR) {
         return console.log(data);
