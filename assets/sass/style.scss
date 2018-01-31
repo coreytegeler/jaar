@@ -19,11 +19,15 @@ html, body {
 		color: #d5404a;
 		display: table;
 		margin: auto;
+		.field {
+			padding: 0 0 1em 0;
+		}
 		label {
 			width: 100%;
 		}
-		input {
+		input, select {
 			width: 100%;
+			margin: .25em 0 0 0;
 			font-size: 18px;
 		}
 	}

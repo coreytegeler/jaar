@@ -18,18 +18,26 @@
       $required = ( $field->required() ? 'required' : '' );
 
       echo '<div class="field ' . $type . '">';
-        echo '<label>' . $label . '</label>';
+        echo '<label for="' . $sheet_label . '">' . $label . '</label>';
         if( $type == 'text' ) {
-          echo '<input type="text" name="' . $sheet_label . '" required="' . $required . '">';
+          echo '<input type="text" name="' . $sheet_label . '" id="' . $sheet_label . '" required="' . $required . '">';
         } else if( $type == 'email' ) {
-          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $sheet_label . '" required="' . $required . '">';
+          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $sheet_label . '" id="' . $sheet_label . '" required="' . $required . '">';
         } else if( $type == 'select' ) {
-          echo '<select type="text" name="' . $sheet_label . '" required="' . $required . '">';
+          echo '<select type="text" name="' . $sheet_label . '" id="' . $sheet_label . '" required="' . $required . '">';
             echo '<option value="null">Select type</option>';
             foreach( $options as $index => $option ) {
               echo '<option value="' . $option . '">' . $option . '</option>';
             }
           echo '</select>';
+        } else if( $type == 'date' ) {
+          echo '<input type="date" name="' . $sheet_label . '" id="' . $sheet_label . '" required="' . $required . '">';
+        } else if( $type == 'radio' ) {
+          foreach( $options as $index => $option ) {
+            $id = $sheet_label . '_' . $option;
+            echo '<input type="radio" name="' . $sheet_label . '" id="' . $id . '" value="' . $id  . '">';
+            echo '<label for="' . $id . '">' . $option . '</label>';
+          }
         }
       echo '</div>';
 

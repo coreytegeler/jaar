@@ -10,6 +10,8 @@ fields:
     fieldsets:
       text:
         label: Text
+        entry: >
+          <strong>{{label}}</strong>
         fields:
           label:
             label: Label
@@ -19,17 +21,19 @@ fields:
             label: Sheet Label
             type: text
             width: 1/2
-          size:
-            label: Size
+          instruct:
+            label: Instructions
             type: text
             width: 1/2
           required:
             label: Required
             type: toggle
-            default: true
+            default: false
             width: 1/2
       email:
         label: Email
+        entry: >
+          <strong>{{label}}</strong>
         fields:
           label:
             label: Label
@@ -39,17 +43,22 @@ fields:
             label: Sheet Label
             type: text
             width: 1/2
-          size:
-            label: Size
+          instruct:
+            label: Instructions
+            type: text
+          instruct:
+            label: Instructions
             type: text
             width: 1/2
           required:
             label: Required
             type: toggle
-            default: true
+            default: false
             width: 1/2
       select:
         label: Select
+        entry: >
+          <strong>{{label}}</strong>
         fields:
           label:
             label: Label
@@ -59,17 +68,66 @@ fields:
             label: Sheet Label
             type: text
             width: 1/2
-          size:
-            label: Size
+          instruct:
+            label: Instructions
             type: text
             width: 1/2
           required:
             label: Required
             type: toggle
-            default: true
+            default: false
             width: 1/2
           options:
             label: Options
+            type: tags
+            lower: false
+      date:
+        label: Date
+        entry: >
+          <strong>{{label}}</strong>
+        fields:
+          label:
+            label: Label
+            type: text
+            width: 1/2
+          sheet_label:
+            label: Sheet Label
+            type: text
+            width: 1/2
+          instruct:
+            label: Instructions
+            type: text
+            width: 1/2
+          required:
+            label: Required
+            type: toggle
+            default: false
+            width: 1/2
+      radio:
+        label: Radio
+        entry: >
+          <strong>{{label}}</strong>
+        fields:
+          label:
+            label: Label
+            type: text
+            width: 1/2
+          sheet_label:
+            label: Sheet Label
+            type: text
+            width: 1/2
+          instruct:
+            label: Instructions
+            type: text
+            width: 1/2
+          required:
+            label: Required
+            type: toggle
+            default: false
+            width: 1/2
+          options:
+            label: Options
+            instruct: First option will be default
             type: tags
             lower: false
           

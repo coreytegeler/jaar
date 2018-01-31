@@ -1,4 +1,10 @@
 # Logs
+content
+assets/avatars
+thumbs
+
+
+# Logs
 logs
 *.log
 npm-debug.log*

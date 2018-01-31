@@ -8,7 +8,7 @@ $ () ->
 		jqxhr = $.ajax
 			url: url,
 			method: 'GET',
-			dataType: 'jsonp',
+			dataType: 'json',
 			data: $(this).serializeObject()
 			error: (jqXHR, textStatus, errorThrown) ->
 				console.log jqXHR

@@ -15,11 +15,112 @@ Fields:
   required: 'true'
   _fieldset: email
 - 
-  label: Type of Event
-  sheet_label: type_of_event
-  size: ""
+  label: Name
+  sheet_label: Name
+  instruct: ""
   required: 'true'
+  _fieldset: text
+- 
+  label: Role
+  sheet_label: Role
+  instruct: ""
+  required: 'true'
+  _fieldset: text
+- 
+  label: Country
+  sheet_label: Country
+  instruct: ""
+  required: 'true'
+  _fieldset: text
+- 
+  label: City
+  sheet_label: City
+  instruct: ""
+  required: 'true'
+  _fieldset: text
+- 
+  label: Date
+  sheet_label: Date
+  instruct: ""
+  required: 'true'
+  _fieldset: date
+- 
+  label: Promoter Name
+  sheet_label: PromoterName
+  instruct: ""
+  required: 'false'
+  _fieldset: text
+- 
+  label: Venue Name
+  sheet_label: VenueName
+  instruct: ""
+  required: 'false'
+  _fieldset: text
+- 
+  label: Venue Address
+  sheet_label: VenueAddress
+  instruct: ""
+  required: 'false'
+  _fieldset: text
+- 
+  label: Venue Website
+  sheet_label: VenueWebsite
+  instruct: ""
+  required: 'false'
+  _fieldset: text
+- 
+  label: Type of Event
+  sheet_label: EventType
+  instruct: ""
+  required: 'false'
+  options: Festival,Solo Show,Other
+  _fieldset: select
+- 
+  label: Type of Performance
+  sheet_label: PerformanceType
+  size: ""
+  required: 'false'
   options: >
     DJ Set,Ambient,Installation,Noise
-    Set,Live Set (+ signing)
+    set,Live set (+ signing),Collaboration
+    with other artist,Against all logic DJ
+    set
   _fieldset: select
+  instruct: ""
+- 
+  label: Performance time
+  sheet_label: PerformanceTime
+  size: ""
+  required: 'false'
+  options: >
+    45 minutes, 1 hour, 1h30, 2h, 2h30,
+    3h, 3h+
+  _fieldset: select
+  instruct: ""
+- 
+  label: Is this a residency?
+  sheet_label: Residency
+  instruct: ""
+  required: 'false'
+  options: Yes,No
+  _fieldset: radio
+- 
+  label: If yes, how many shows?
+  sheet_label: ResidencyCount
+  instruct: ""
+  required: 'false'
+  _fieldset: text
+- 
+  label: Venue capacity
+  sheet_label: VenueCapacity
+  required: 'false'
+  options: >
+    1-100, 100-200, 200-300, 400-700, 800-1200, 1200-1600, 1700-2100, 2100-3000, 3000+
+  _fieldset: select
+  instruct: ""
+- 
+  label: Venue sound system brand
+  sheet_label: SoundSystem
+  instruct: ""
+  required: 'false'
+  _fieldset: text

@@ -9,7 +9,7 @@ $(function() {
     return jqxhr = $.ajax({
       url: url,
       method: 'GET',
-      dataType: 'jsonp',
+      dataType: 'json',
       data: $(this).serializeObject(),
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);

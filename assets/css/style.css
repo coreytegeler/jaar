@@ -18,8 +18,11 @@ html, body {
     color: #d5404a;
     display: table;
     margin: auto; }
+    html form .field, body form .field {
+      padding: 0 0 1em 0; }
     html form label, body form label {
       width: 100%; }
-    html form input, body form input {
+    html form input, html form select, body form input, body form select {
       width: 100%;
+      margin: .25em 0 0 0;
       font-size: 18px; }
