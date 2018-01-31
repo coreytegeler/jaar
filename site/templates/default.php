@@ -13,29 +13,32 @@
     foreach( $fields->toStructure() as $index => $field ) {
       $type = $field->_fieldset();
       $label = $field->label();
-      $label = $field->label();
+      $sheet_label = $field->sheet_label();
+      if( $sheet_label->empty() ) {
+        $sheet_label = $label;
+      }
       $options = $field->options()->split(',');
       $required = ( $field->required() ? 'required' : '' );
 
       echo '<div class="field ' . $type . '">';
         echo '<label for="' . $label . '">' . $label . '</label>';
         if( $type == 'text' ) {
-          echo '<input type="text" name="' . $label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<input type="text" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
         } else if( $type == 'email' ) {
-          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
         } else if( $type == 'select' ) {
-          echo '<select type="text" name="' . $label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<select type="text" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
             echo '<option value="null">Select type</option>';
             foreach( $options as $index => $option ) {
               echo '<option value="' . $option . '">' . $option . '</option>';
             }
           echo '</select>';
         } else if( $type == 'date' ) {
-          echo '<input type="date" name="' . $label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<input type="date" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
         } else if( $type == 'radio' ) {
           foreach( $options as $index => $option ) {
             $id = $label . '_' . $option;
-            echo '<input type="radio" name="' . $label . '" id="' . $id . '" value="' . $id  . '">';
+            echo '<input type="radio" name="' . $sheet_label . '" id="' . $id . '" value="' . $id  . '">';
             echo '<label for="' . $id . '">' . $option . '</label>';
           }
         }

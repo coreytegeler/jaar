@@ -106,7 +106,7 @@ Fields:
   _fieldset: radio
 - 
   label: If yes, how many shows?
-  sheet_label: ResidencyCount
+  sheet_label: Residency Count
   instruct: ""
   required: 'false'
   _fieldset: text
@@ -115,7 +115,9 @@ Fields:
   sheet_label: VenueCapacity
   required: 'false'
   options: >
-    1-100, 100-200, 200-300, 400-700, 800-1200, 1200-1600, 1700-2100, 2100-3000, 3000+
+    1-100, 100-200, 200-300, 400-700,
+    800-1200, 1200-1600, 1700-2100,
+    2100-3000, 3000+
   _fieldset: select
   instruct: ""
 - 
