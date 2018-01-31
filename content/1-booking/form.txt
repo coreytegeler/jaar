@@ -12,37 +12,37 @@ Fields:
   label: Email
   sheet_label: email
   size: ""
-  required: 'true'
+  required: 'false'
   _fieldset: email
 - 
   label: Name
   sheet_label: Name
   instruct: ""
-  required: 'true'
+  required: 'false'
   _fieldset: text
 - 
   label: Role
   sheet_label: Role
   instruct: ""
-  required: 'true'
+  required: 'false'
   _fieldset: text
 - 
   label: Country
   sheet_label: Country
   instruct: ""
-  required: 'true'
+  required: 'false'
   _fieldset: text
 - 
   label: City
   sheet_label: City
   instruct: ""
-  required: 'true'
+  required: 'false'
   _fieldset: text
 - 
   label: Date
   sheet_label: Date
   instruct: ""
-  required: 'true'
+  required: 'false'
   _fieldset: date
 - 
   label: Promoter Name
