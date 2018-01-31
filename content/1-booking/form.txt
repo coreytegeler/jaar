@@ -1,0 +1,25 @@
+Name: Booking
+
+----
+
+Title: Booking
+
+----
+
+Fields: 
+
+- 
+  label: Email
+  sheet_label: Email
+  size: ""
+  required: 'true'
+  _fieldset: text
+- 
+  label: Type of Event
+  sheet_label: type_of_event
+  size: ""
+  required: 'true'
+  options: >
+    DJ Set,Ambient,Installation,Noise
+    Set,Live Set (+ signing)
+  _fieldset: select

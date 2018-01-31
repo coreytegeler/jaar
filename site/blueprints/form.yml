@@ -1,0 +1,55 @@
+title: Form
+
+fields:
+  title:
+    label: Title
+    type:  text
+  fields:
+    label: Fields
+    type: builder
+    fieldsets:
+      text:
+        label: Text
+        fields:
+          label:
+            label: Label
+            type: text
+            width: 1/2
+          sheet_label:
+            label: Sheet Label
+            type: text
+            width: 1/2
+          size:
+            label: Size
+            type: text
+            width: 1/2
+          required:
+            label: Required
+            type: toggle
+            default: true
+            width: 1/2
+      select:
+        label: Select
+        fields:
+          label:
+            label: Label
+            type: text
+            width: 1/2
+          sheet_label:
+            label: Sheet Label
+            type: text
+            width: 1/2
+          size:
+            label: Size
+            type: text
+            width: 1/2
+          required:
+            label: Required
+            type: toggle
+            default: true
+            width: 1/2
+          options:
+            label: Options
+            type: tags
+            lower: false
+          

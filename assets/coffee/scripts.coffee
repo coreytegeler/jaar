@@ -1,6 +1,6 @@
 $ () ->
 	$form = $('form#booking_form')
-	url = GOOGLE_SCRIPT
+	url = 'GOOGLE_SCRIPT'
 
 	$('#submit_booking_form').on 'click', (e) ->
 		e.preventDefault()

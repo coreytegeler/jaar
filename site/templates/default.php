@@ -2,20 +2,35 @@
 
   <main class="main" role="main">
 
-   <form id="booking_form">
 
-    <label>Email</label>
-    <input type="text" name="email">
+  <form id="booking_form">
+  <?php
 
-    <label>Verify Email</label>
-    <input type="text" name="verify_email">
+  $booking = page( 'booking' );
+  $fields = $booking->fields();
+  
+  foreach( $fields->toStructure() as $index => $field ) {
+    $type = $field->_fieldset();
+    $label = $field->label();
+    $sheet_label = $field->sheet_label();
+    $options = $field->options()->split(',');
 
-    <label>Full Name</label>
-    <input type="text" name="full_name">
+    echo '<div class="field ' . $type . '">';
+      echo '<label>' . $label . '</label>';
+      if( $type == 'text' ) {
+        echo '<input type="text" name="' . $sheet_label . '">';
+      } else if( $type == 'select' ) {
+        echo '<select type="text" name="' . $sheet_label . '" required>';
+          echo '<option value="null">Select type</option>';
+          foreach( $options as $index => $option ) {
+            echo '<option value="' . $option . '">' . $option . '</option>';
+          }
+        echo '</select>';
+      }
+    echo '</div>';
+  }
 
-    <label>Role</label>
-    <input type="text" name="role">
-
+  ?>
     <input type="submit" id="submit_booking_form"/>
    </form>
 

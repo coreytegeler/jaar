@@ -1,7 +1,7 @@
 $(function() {
   var $form, url;
   $form = $('form#booking_form');
-  url = GOOGLE_SCRIPT;
+  url = 'https://script.google.com/macros/s/AKfycbyimcxY-hCxs4Pc1rDjqIjhBkpON-qmcQLl7xfzvmsN7Q6frWTj/exec';
   $('#submit_booking_form').on('click', function(e) {
     var jqxhr;
     e.preventDefault();
