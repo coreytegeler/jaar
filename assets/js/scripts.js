@@ -2,15 +2,15 @@ $(function() {
   var $form, url;
   $form = $('form');
   url = 'https://script.google.com/macros/s/AKfycbyimcxY-hCxs4Pc1rDjqIjhBkpON-qmcQLl7xfzvmsN7Q6frWTj/exec';
-  $('form input[type="submit"]').on('click', function(e) {
+  $('form').on('submit', function(e) {
     var jqxhr;
     e.preventDefault();
-    console.log($form.serializeObject());
+    console.log(this);
     return jqxhr = $.ajax({
       url: url,
       method: 'GET',
       dataType: 'jsonp',
-      data: $form.serializeObject(),
+      data: $(this).serializeObject(),
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);
         return console.log(textStatus, errorThrown);

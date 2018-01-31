@@ -2,14 +2,14 @@ $ () ->
 	$form = $('form')
 	url = 'GOOGLE_SCRIPT'
 
-	$('form input[type="submit"]').on 'click', (e) ->
+	$('form').on 'submit', (e) ->
 		e.preventDefault()
-		console.log $form.serializeObject()
+		console.log this
 		jqxhr = $.ajax
 			url: url,
 			method: 'GET',
 			dataType: 'jsonp',
-			data: $form.serializeObject()
+			data: $(this).serializeObject()
 			error: (jqXHR, textStatus, errorThrown) ->
 				console.log jqXHR
 				console.log textStatus, errorThrown
