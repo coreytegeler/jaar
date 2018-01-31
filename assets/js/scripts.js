@@ -1,10 +1,11 @@
 $(function() {
   var $form, url;
-  $form = $('form#booking_form');
+  $form = $('form');
   url = 'https://script.google.com/macros/s/AKfycbyimcxY-hCxs4Pc1rDjqIjhBkpON-qmcQLl7xfzvmsN7Q6frWTj/exec';
-  $('#submit_booking_form').on('click', function(e) {
+  $('form input[type="submit"]').on('click', function(e) {
     var jqxhr;
     e.preventDefault();
+    console.log($form.serializeObject());
     return jqxhr = $.ajax({
       url: url,
       method: 'GET',
@@ -12,7 +13,7 @@ $(function() {
       data: $form.serializeObject(),
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);
-        return console.log(textStatus);
+        return console.log(textStatus, errorThrown);
       },
       success: function(data, textStatus, jqXHR) {
         return console.log(data);

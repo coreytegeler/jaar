@@ -1,9 +1,10 @@
 $ () ->
-	$form = $('form#booking_form')
+	$form = $('form')
 	url = 'GOOGLE_SCRIPT'
 
-	$('#submit_booking_form').on 'click', (e) ->
+	$('form input[type="submit"]').on 'click', (e) ->
 		e.preventDefault()
+		console.log $form.serializeObject()
 		jqxhr = $.ajax
 			url: url,
 			method: 'GET',
@@ -11,7 +12,7 @@ $ () ->
 			data: $form.serializeObject()
 			error: (jqXHR, textStatus, errorThrown) ->
 				console.log jqXHR
-				console.log textStatus
+				console.log textStatus, errorThrown
 			success: (data, textStatus, jqXHR) ->
 				console.log data
 
