@@ -4,12 +4,13 @@ $ () ->
 
 	$('form').on 'submit', (e) ->
 		e.preventDefault()
-		console.log this
+		data = $(this).serializeObject()
+		console.log data
 		jqxhr = $.ajax
 			url: url,
 			method: 'GET',
 			dataType: 'json',
-			data: $(this).serializeObject()
+			data: data
 			error: (jqXHR, textStatus, errorThrown) ->
 				console.log jqXHR
 				console.log textStatus, errorThrown

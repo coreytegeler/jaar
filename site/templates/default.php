@@ -17,29 +17,33 @@
       if( $sheet_label->empty() ) {
         $sheet_label = $label;
       }
+      $id = preg_replace( '/\s+/', '', $sheet_label );
       $options = $field->options()->split(',');
-      $required = ( $field->required() ? 'required' : '' );
+      $required = ( $field->required() == 'true' ? ' required' : '' );
 
       echo '<div class="field ' . $type . '">';
-        echo '<label for="' . $label . '">' . $label . '</label>';
+        echo '<label for="' . $id . '">' . $label . '</label>';
         if( $type == 'text' ) {
-          echo '<input type="text" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<input type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
         } else if( $type == 'email' ) {
-          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
         } else if( $type == 'select' ) {
-          echo '<select type="text" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
-            echo '<option value="null">Select type</option>';
+          echo '<select type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
+            echo $field->default();
+            if( $field->default() == 'false' ) {
+              echo '<option value="null"></option>';  
+            }
             foreach( $options as $index => $option ) {
               echo '<option value="' . $option . '">' . $option . '</option>';
             }
           echo '</select>';
         } else if( $type == 'date' ) {
-          echo '<input type="date" name="' . $sheet_label . '" id="' . $label . '" required="' . $required . '">';
+          echo '<input type="date" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
         } else if( $type == 'radio' ) {
           foreach( $options as $index => $option ) {
-            $id = $label . '_' . $option;
-            echo '<input type="radio" name="' . $sheet_label . '" id="' . $id . '" value="' . $id  . '">';
-            echo '<label for="' . $id . '">' . $option . '</label>';
+            $option_id = $label . '_' . $option;
+            echo '<input type="radio" name="' . $sheet_label . '" id="' . $option_id . '" value="' . $id  . '">';
+            echo '<label for="' . $option_id . '">' . $option . '</label>';
           }
         }
       echo '</div>';
@@ -47,7 +51,7 @@
       if( $type == 'email' ) {
         echo '<div class="field verify_email email">';
           echo '<label>Verify ' . $label . '</label>';
-          echo '<input type="email" class="verify" name="verify_' . $label . '" required="' . $required . '">';
+          echo '<input type="email" class="verify" name="verify_' . $label . '"' . $required . '">';
         echo '</div>';
       }
 

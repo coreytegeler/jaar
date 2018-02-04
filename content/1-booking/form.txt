@@ -46,25 +46,25 @@ Fields:
   _fieldset: date
 - 
   label: Promoter Name
-  sheet_label: PromoterName
+  sheet_label: ""
   instruct: ""
   required: 'false'
   _fieldset: text
 - 
   label: Venue Name
-  sheet_label: VenueName
+  sheet_label: ""
   instruct: ""
   required: 'false'
   _fieldset: text
 - 
   label: Venue Address
-  sheet_label: VenueAddress
+  sheet_label: ""
   instruct: ""
   required: 'false'
   _fieldset: text
 - 
   label: Venue Website
-  sheet_label: VenueWebsite
+  sheet_label: ""
   instruct: ""
   required: 'false'
   _fieldset: text
@@ -75,9 +75,10 @@ Fields:
   required: 'false'
   options: Festival,Solo Show,Other
   _fieldset: select
+  default: 'false'
 - 
   label: Type of Performance
-  sheet_label: PerformanceType
+  sheet_label: ""
   size: ""
   required: 'false'
   options: >
@@ -87,23 +88,24 @@ Fields:
     set
   _fieldset: select
   instruct: ""
+  default: 'false'
 - 
   label: Performance time
   sheet_label: PerformanceTime
   size: ""
   required: 'false'
-  options: >
-    45 minutes, 1 hour, 1h30, 2h, 2h30,
-    3h, 3h+
+  options: 45 minutes,1 hour,1h30,2h,2h30,3h,3h+
   _fieldset: select
   instruct: ""
+  default: 'false'
 - 
   label: Is this a residency?
   sheet_label: Residency
   instruct: ""
   required: 'false'
-  options: Yes,No
-  _fieldset: radio
+  options: No,Yes
+  _fieldset: select
+  default: 'true'
 - 
   label: If yes, how many shows?
   sheet_label: Residency Count
@@ -112,17 +114,16 @@ Fields:
   _fieldset: text
 - 
   label: Venue capacity
-  sheet_label: VenueCapacity
+  sheet_label: ""
   required: 'false'
   options: >
-    1-100, 100-200, 200-300, 400-700,
-    800-1200, 1200-1600, 1700-2100,
-    2100-3000, 3000+
+    1-100,100-200,200-300,400-700,800-1200,1200-1600,1700-2100,2100-3000,3000+
   _fieldset: select
   instruct: ""
+  default: 'false'
 - 
   label: Venue sound system brand
-  sheet_label: SoundSystem
+  sheet_label: Sound System
   instruct: ""
   required: 'false'
   _fieldset: text

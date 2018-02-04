@@ -3,14 +3,15 @@ $(function() {
   $form = $('form');
   url = 'https://script.google.com/macros/s/AKfycbyimcxY-hCxs4Pc1rDjqIjhBkpON-qmcQLl7xfzvmsN7Q6frWTj/exec';
   $('form').on('submit', function(e) {
-    var jqxhr;
+    var data, jqxhr;
     e.preventDefault();
-    console.log(this);
+    data = $(this).serializeObject();
+    console.log(data);
     return jqxhr = $.ajax({
       url: url,
       method: 'GET',
       dataType: 'json',
-      data: $(this).serializeObject(),
+      data: data,
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);
         return console.log(textStatus, errorThrown);

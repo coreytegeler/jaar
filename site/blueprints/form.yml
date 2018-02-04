@@ -71,16 +71,20 @@ fields:
           instruct:
             label: Instructions
             type: text
+          options:
+            label: Options
+            type: tags
+            lower: false
+          default:
+            label: Make the first value the default?
+            type: toggle
+            default: false
             width: 1/2
           required:
             label: Required
             type: toggle
             default: false
             width: 1/2
-          options:
-            label: Options
-            type: tags
-            lower: false
       date:
         label: Date
         entry: >
@@ -103,31 +107,31 @@ fields:
             type: toggle
             default: false
             width: 1/2
-      radio:
-        label: Radio
-        entry: >
-          <strong>{{label}}</strong>
-        fields:
-          label:
-            label: Label
-            type: text
-            width: 1/2
-          sheet_label:
-            label: Sheet Label
-            type: text
-            width: 1/2
-          instruct:
-            label: Instructions
-            type: text
-            width: 1/2
-          required:
-            label: Required
-            type: toggle
-            default: false
-            width: 1/2
-          options:
-            label: Options
-            instruct: First option will be default
-            type: tags
-            lower: false
+      # radio:
+      #   label: Radio
+      #   entry: >
+      #     <strong>{{label}}</strong>
+      #   fields:
+      #     label:
+      #       label: Label
+      #       type: text
+      #       width: 1/2
+      #     sheet_label:
+      #       label: Sheet Label
+      #       type: text
+      #       width: 1/2
+      #     instruct:
+      #       label: Instructions
+      #       type: text
+      #       width: 1/2
+      #     required:
+      #       label: Required
+      #       type: toggle
+      #       default: false
+      #       width: 1/2
+      #     options:
+      #       label: Options
+      #       instruct: First option will be default
+      #       type: tags
+      #       lower: false
           
