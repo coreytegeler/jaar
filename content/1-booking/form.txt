@@ -2,7 +2,7 @@ Name: Booking
 
 ----
 
-Title: Booking
+Title: Booking Request
 
 ----
 
@@ -10,10 +10,11 @@ Fields:
 
 - 
   label: Email
-  sheet_label: email
+  sheet_label: ""
   size: ""
   required: 'false'
   _fieldset: email
+  instruct: ""
 - 
   label: Name
   sheet_label: Name
@@ -127,3 +128,10 @@ Fields:
   instruct: ""
   required: 'false'
   _fieldset: text
+
+----
+
+Subtitle: 
+
+For all booking please use this form.
+Contact: (link: mailto:info@nicolasjaar.net text: info@nicolasjaar.net)

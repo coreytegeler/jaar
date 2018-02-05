@@ -4,19 +4,46 @@ $ () ->
 
 	$('form').on 'submit', (e) ->
 		e.preventDefault()
-		data = $(this).serializeObject()
-		console.log data
-		jqxhr = $.ajax
-			url: url,
-			method: 'GET',
-			dataType: 'json',
-			data: data
-			error: (jqXHR, textStatus, errorThrown) ->
-				console.log jqXHR
-				console.log textStatus, errorThrown
-			success: (data, textStatus, jqXHR) ->
-				console.log data
+		validated = validateForm(this)
+		if validated
+			data = $(this).serializeObject()
+			jqxhr = $.ajax
+				url: url,
+				method: 'GET',
+				dataType: 'json',
+				data: data
+				error: (jqXHR, textStatus, errorThrown) ->
+					console.log jqXHR
+					console.log textStatus, errorThrown
+				success: (data, textStatus, jqXHR) ->
+					console.log data
 
+
+	validateForm = (form) ->
+		valid = true
+		data = $(form).serializeObject()
+		$fields = $form.find('.field')
+		$fields.each (i, field) ->
+			$field = $(field)
+			$input = $field.find('input, select')
+			value = $input.val()
+			if $field.is('.verify')
+				$primary_field = $field.prev()
+				$primary_input = $primary_field.find('input')
+				primary_value = $primary_input.val()
+				if primary_value != value
+					$primary_field.addClass('error')
+					$field.addClass('error')
+					$input.focus()
+					valid = false
+			if $field.is('.required') && !value || $input.is(':invalid')
+				$field.addClass('error')
+				valid = false
+			return true
+		return valid
+
+	updateInput = (e) ->
+		console.log '!'
 
 	$.fn.serializeObject = () ->
 		o = {}

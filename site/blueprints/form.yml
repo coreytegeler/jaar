@@ -4,6 +4,9 @@ fields:
   title:
     label: Title
     type:  text
+  subtitle:
+    label: Subtitle
+    type: textarea
   fields:
     label: Fields
     type: builder
@@ -75,11 +78,12 @@ fields:
             label: Options
             type: tags
             lower: false
-          default:
-            label: Make the first value the default?
-            type: toggle
-            default: false
             width: 1/2
+          # default:
+          #   label: Make the first value the default?
+          #   type: toggle
+          #   default: false
+          #   width: 1/2
           required:
             label: Required
             type: toggle

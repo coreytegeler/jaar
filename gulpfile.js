@@ -22,8 +22,7 @@ var paths = {
 var dest = {
   css: './assets/css/',
   js: './assets/js/',
-  // templates: './site',
-  images: '../../assets/images/'
+  images: '../images/'
 }
 
 var GOOGLE_SCRIPT = 'https://script.google.com/macros/s/AKfycbyimcxY-hCxs4Pc1rDjqIjhBkpON-qmcQLl7xfzvmsN7Q6frWTj/exec';

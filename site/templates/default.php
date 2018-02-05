@@ -7,8 +7,9 @@
     $slug = 'booking';
     $page = page( $slug );
   }
-
   echo '<form id="' . $slug . '_form">';
+    echo '<h1>' . $page->title() . '</h1>';
+    echo '<h2>' . $page->subtitle() . '</h2>';
     $fields = $page->fields();
     foreach( $fields->toStructure() as $index => $field ) {
       $type = $field->_fieldset();
@@ -19,20 +20,18 @@
       }
       $id = preg_replace( '/\s+/', '', $sheet_label );
       $options = $field->options()->split(',');
-      $required = ( $field->required() == 'true' ? ' required' : '' );
+      // $required = ( $field->required() == 'true' ? ' required' : '' );
+      $required = ' required';
 
-      echo '<div class="field ' . $type . '">';
+      echo '<div class="field ' . $type . $required . '">';
         echo '<label for="' . $id . '">' . $label . '</label>';
         if( $type == 'text' ) {
           echo '<input type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
         } else if( $type == 'email' ) {
-          echo '<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
+          echo '<input type="email" name="' . $label . '"' . $required . '>';
         } else if( $type == 'select' ) {
           echo '<select type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
-            echo $field->default();
-            if( $field->default() == 'false' ) {
-              echo '<option value="null"></option>';  
-            }
+            echo '<option value=""></option>';
             foreach( $options as $index => $option ) {
               echo '<option value="' . $option . '">' . $option . '</option>';
             }
@@ -49,9 +48,9 @@
       echo '</div>';
 
       if( $type == 'email' ) {
-        echo '<div class="field verify_email email">';
+        echo '<div class="field email verify required">';
           echo '<label>Verify ' . $label . '</label>';
-          echo '<input type="email" class="verify" name="verify_' . $label . '"' . $required . '">';
+          echo '<input type="email" class="verify" name="verify-' . $label . '"' . $required . '>';
         echo '</div>';
       }
 
