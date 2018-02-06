@@ -9,7 +9,7 @@
   }
   echo '<form id="' . $slug . '_form">';
     echo '<h1>' . $page->title() . '</h1>';
-    echo '<h2>' . $page->subtitle() . '</h2>';
+    echo '<h2>' . $page->subtitle()->kirbytext() . '</h2>';
     $fields = $page->fields();
     foreach( $fields->toStructure() as $index => $field ) {
       $type = $field->_fieldset();
@@ -30,12 +30,24 @@
         } else if( $type == 'email' ) {
           echo '<input type="email" name="' . $label . '"' . $required . '>';
         } else if( $type == 'select' ) {
+
           echo '<select type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
             echo '<option value=""></option>';
             foreach( $options as $index => $option ) {
               echo '<option value="' . $option . '">' . $option . '</option>';
             }
           echo '</select>';
+
+          echo '<div class="dropdown" data-name="' . $sheet_label . '" data-id="' . $id . '" data-required="' . $required . '">';
+            echo '<div class="label"></div>';
+            echo '<div class="options">';
+              echo '<div class="option" data-value=""></div>';
+              foreach( $options as $index => $option ) {
+                echo '<div class="option" data-value="' . $option . '">' . $option . '</div>';
+              }
+            echo '</div>';
+          echo '</div>';
+
         } else if( $type == 'date' ) {
           echo '<input type="date" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
         } else if( $type == 'radio' ) {

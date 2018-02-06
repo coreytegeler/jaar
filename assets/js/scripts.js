@@ -23,6 +23,28 @@ $(function() {
       });
     }
   });
+  $('.select .dropdown').on('click touch', function(e) {
+    var $dropdown, $options, $select;
+    $dropdown = $(this);
+    $select = $dropdown.parents('.select');
+    $options = $dropdown.find('.options');
+    if (!$(e.target).is('.option, .options')) {
+      $('.options.opened').not($options).removeClass('opened');
+      return $options.toggleClass('opened');
+    }
+  });
+  $('.select .dropdown .option').on('click touch', function(e) {
+    var $field, $option, $options, $select, value;
+    $field = $(this).parents('.select');
+    $options = $field.find('.options');
+    $select = $field.find('select');
+    value = $(this).attr('data-value');
+    $option = $select[0].value = value;
+    $field.find('.label').html(value);
+    $options.removeClass('opened');
+    $options.find('.selected').removeClass('selected');
+    return $(this).addClass('selected');
+  });
   validateForm = function(form) {
     var $fields, data, valid;
     valid = true;

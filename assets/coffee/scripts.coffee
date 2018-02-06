@@ -18,6 +18,25 @@ $ () ->
 				success: (data, textStatus, jqXHR) ->
 					console.log data
 
+	$('.select .dropdown').on 'click touch', (e) ->
+		$dropdown = $(this)
+		$select = $dropdown.parents('.select')
+		$options = $dropdown.find('.options')
+
+		if !$(e.target).is('.option, .options')
+			$('.options.opened').not($options).removeClass('opened')
+			$options.toggleClass('opened')
+
+	$('.select .dropdown .option').on 'click touch', (e) ->
+		$field = $(this).parents('.select')
+		$options = $field.find('.options')
+		$select = $field.find('select')
+		value = $(this).attr('data-value')
+		$option = $select[0].value = value
+		$field.find('.label').html(value)
+		$options.removeClass('opened')
+		$options.find('.selected').removeClass('selected')
+		$(this).addClass('selected')
 
 	validateForm = (form) ->
 		valid = true
