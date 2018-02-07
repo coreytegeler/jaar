@@ -33,6 +33,28 @@ fields:
             type: toggle
             default: false
             width: 1/2
+      textarea:
+        label: Text Area
+        entry: >
+          <strong>{{label}}</strong>
+        fields:
+          label:
+            label: Label
+            type: text
+            width: 1/2
+          sheet_label:
+            label: Sheet Label
+            type: text
+            width: 1/2
+          instruct:
+            label: Instructions
+            type: text
+            width: 1/2
+          required:
+            label: Required
+            type: toggle
+            default: false
+            width: 1/2
       email:
         label: Email
         entry: >

@@ -20,13 +20,14 @@
       }
       $id = preg_replace( '/\s+/', '', $sheet_label );
       $options = $field->options()->split(',');
-      // $required = ( $field->required() == 'true' ? ' required' : '' );
-      $required = ' required';
+      $required = ( $field->required() == 'true' ? ' required' : '' );
 
       echo '<div class="field ' . $type . $required . '">';
         echo '<label for="' . $id . '">' . $label . '</label>';
         if( $type == 'text' ) {
           echo '<input type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
+        } else if( $type == 'textarea' ) {
+          echo '<textarea name="' . $sheet_label . '" id="' . $id . '"' . $required . '" rows="4"></textarea>';
         } else if( $type == 'email' ) {
           echo '<input type="email" name="' . $label . '"' . $required . '>';
         } else if( $type == 'select' ) {

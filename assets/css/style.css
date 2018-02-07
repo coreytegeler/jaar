@@ -7,6 +7,10 @@ html, body {
   font-size: 18px;
   line-height: 1.1em; }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; }
+
 main {
   width: 100%;
   height: 100%;
@@ -17,12 +21,13 @@ h1 {
   font-weight: 500;
   font-size: 28px;
   line-height: 28px;
-  margin: 0 0 10px 3px;
+  margin: 0 0 10px 0;
   text-transform: uppercase; }
 
 h2 {
   font-size: 8.5px;
-  line-height: 10px; }
+  line-height: 10px;
+  text-transform: uppercase; }
   h2 a {
     color: inherit !important; }
 
@@ -33,15 +38,15 @@ form {
   padding: 15px 13px 45px 15px;
   margin: auto;
   background: #fffef6;
-  color: #d5404a;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  color: #d5404a; }
   form .field {
     width: calc(100% - 2px);
     border: solid #d5404a;
-    border-width: 1px 1px 0 1px; }
+    border-width: 1px 1px 0 1px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
     form .field:last-of-type {
       border-bottom-width: 1px; }
     form .field.error {
@@ -56,28 +61,25 @@ form {
   form input, form textarea {
     width: 100%;
     margin: 0;
-    height: 25px;
     font-size: 18px;
     background: none;
     border: none; }
     form input:focus, form textarea:focus {
       outline: none; }
+  form textarea {
+    display: block; }
   form input {
-    width: 342px; }
-    form input[type=date] {
-      background: url(../../assets/images/arrow-down.png) 98%/5% no-repeat;
+    height: 25px; }
+  form input[type=date] {
+    background-image: url(../images/arrow-down.png);
+    background-position: calc(100% - 10px) center;
+    background-repeat: no-repeat;
+    background-size: 15px; }
+    form input[type=date]::-webkit-clear-button, form input[type=date]::-webkit-calendar-picker-indicator {
+      opacity: 0;
       cursor: pointer; }
-      form input[type=date]::-webkit-clear-button, form input[type=date]::-webkit-calendar-picker-indicator {
-        opacity: 0; }
-      form input[type=date]::-webkit-inner-spin-button {
-        display: none; }
-    form input[type=submit] {
-      color: #fffef6;
-      background: #d5404a;
-      height: 35px;
-      width: 350px;
-      margin-top: 20px;
-      border: none; }
+    form input[type=date]::-webkit-inner-spin-button {
+      display: none; }
   form input[type=email], form input[type=text], form input[type=date], form textarea {
     font-family: Helvetica, Arial, sans-serif;
     border: none;
@@ -98,8 +100,10 @@ form {
       cursor: pointer;
       -webkit-appearance: none;
       -webkit-border-radius: 0px;
-      background: url(../../assets/images/arrow-down.png) 98%/5% no-repeat;
-      background-position-y: top;
+      background-image: url(../images/arrow-down.png);
+      background-position: calc(100% - 10px) center;
+      background-repeat: no-repeat;
+      background-size: 15px;
       position: relative; }
       form .select .dropdown .label {
         width: calc(100% - 10px);
@@ -110,9 +114,9 @@ form {
       form .select .dropdown .options {
         min-width: 40%;
         top: 100%;
-        right: 0;
+        right: -1px;
         border: solid #d5404a;
-        border-width: 1px 0 1px 1px;
+        border-width: 1px;
         background-color: #fffef6;
         position: absolute;
         display: none;
@@ -123,5 +127,14 @@ form {
           padding: 0 5px; }
           form .select .dropdown .options .option.selected, form .select .dropdown .options .option:hover {
             color: black; }
-        form .select .dropdown .options.opened {
+      form .select .dropdown.opened {
+        background-image: url(../images/arrow-up.png); }
+        form .select .dropdown.opened .options {
           display: block; }
+  form input[type=submit] {
+    color: #fffef6;
+    background: #d5404a;
+    height: 35px;
+    width: 350px;
+    margin-top: 20px;
+    border: none; }

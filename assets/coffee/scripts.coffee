@@ -4,6 +4,8 @@ $ () ->
 
 	$('form').on 'submit', (e) ->
 		e.preventDefault()
+		if $form.is('.submitted')
+			return
 		validated = validateForm(this)
 		if validated
 			data = $(this).serializeObject()
@@ -17,24 +19,26 @@ $ () ->
 					console.log textStatus, errorThrown
 				success: (data, textStatus, jqXHR) ->
 					console.log data
+					$form.addClass('submitted')
 
-	$('.select .dropdown').on 'click touch', (e) ->
+	$('.select .dropdown').on 'click touchend', (e) ->
 		$dropdown = $(this)
 		$select = $dropdown.parents('.select')
 		$options = $dropdown.find('.options')
 
 		if !$(e.target).is('.option, .options')
-			$('.options.opened').not($options).removeClass('opened')
-			$options.toggleClass('opened')
+			$('.dropdown.opened').not($dropdown).removeClass('opened')
+			$dropdown.toggleClass('opened')
 
-	$('.select .dropdown .option').on 'click touch', (e) ->
+	$('.select .dropdown .option').on 'click touchend', (e) ->
 		$field = $(this).parents('.select')
 		$options = $field.find('.options')
+		$dropdown = $options.parents('.dropdown')
 		$select = $field.find('select')
 		value = $(this).attr('data-value')
 		$option = $select[0].value = value
 		$field.find('.label').html(value)
-		$options.removeClass('opened')
+		$dropdown.removeClass('opened')
 		$options.find('.selected').removeClass('selected')
 		$(this).addClass('selected')
 

@@ -128,6 +128,12 @@ Fields:
   instruct: ""
   required: 'false'
   _fieldset: text
+- 
+  label: Text area
+  sheet_label: ""
+  instruct: ""
+  required: 'false'
+  _fieldset: textarea
 
 ----
 
