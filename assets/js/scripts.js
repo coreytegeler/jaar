@@ -1,5 +1,5 @@
 $(function() {
-  var $form, updateInput, url, validateForm;
+  var $form, updateInput, url, validateEmail, validateForm;
   $form = $('form');
   url = 'https://script.google.com/macros/s/AKfycbyimcxY-hCxs4Pc1rDjqIjhBkpON-qmcQLl7xfzvmsN7Q6frWTj/exec';
   $('form').on('submit', function(e) {
@@ -27,14 +27,33 @@ $(function() {
       });
     }
   });
+  $('input').on('focus', function(e) {
+    var $field;
+    $field = $(this).parents('.field');
+    return $field.addClass('focus');
+  });
+  $('input').on('blur', function(e) {
+    var $field;
+    $field = $(this).parents('.field');
+    return $field.removeClass('focus');
+  });
   $('.select .dropdown').on('click touchend', function(e) {
-    var $dropdown, $options, $select;
+    var $dropdown, $field, $options, $select, optionsHeight;
     $dropdown = $(this);
+    $field = $dropdown.parents('.field');
     $select = $dropdown.parents('.select');
     $options = $dropdown.find('.options');
     if (!$(e.target).is('.option, .options')) {
       $('.dropdown.opened').not($dropdown).removeClass('opened');
-      return $dropdown.toggleClass('opened');
+      $dropdown.toggleClass('opened');
+      if ($dropdown.is('.opened')) {
+        optionsHeight = $dropdown.find('.inner').innerHeight();
+        return $options.css({
+          height: optionsHeight
+        });
+      } else {
+        return $options.attr('style', '');
+      }
     }
   });
   $('.select .dropdown .option').on('click touchend', function(e) {
@@ -47,19 +66,29 @@ $(function() {
     $option = $select[0].value = value;
     $field.find('.label').html(value);
     $dropdown.removeClass('opened');
+    $field.removeClass('focus');
     $options.find('.selected').removeClass('selected');
     return $(this).addClass('selected');
   });
   validateForm = function(form) {
-    var $fields, data, valid;
+    var $errors, $fields, data, errors, valid;
     valid = true;
     data = $(form).serializeObject();
     $fields = $form.find('.field');
+    errors = [];
+    $errors = $('.errors');
     $fields.each(function(i, field) {
       var $field, $input, $primary_field, $primary_input, primary_value, value;
       $field = $(field);
       $input = $field.find('input, select');
       value = $input.val();
+      if ($field.is('.email') && !validateEmail(value)) {
+        errors.push('invalidEmail');
+      }
+      if ($field.is('.required') && !value || !value.length) {
+        $field.addClass('error');
+        errors.push('requiredField');
+      }
       if ($field.is('.verify')) {
         $primary_field = $field.prev();
         $primary_input = $primary_field.find('input');
@@ -67,20 +96,37 @@ $(function() {
         if (primary_value !== value) {
           $primary_field.addClass('error');
           $field.addClass('error');
-          $input.focus();
-          valid = false;
+          errors.push('unverifiedEmail');
         }
-      }
-      if ($field.is('.required') && !value || $input.is(':invalid')) {
-        $field.addClass('error');
-        valid = false;
       }
       return true;
     });
+    $('.errors .error').each(function(i, error) {
+      var $error, id;
+      $error = $(error);
+      id = $error.attr('id');
+      if (errors.includes(id)) {
+        return $error.addClass('show');
+      } else {
+        return $error.removeClass('show');
+      }
+    });
+    if (errors.length) {
+      $errors.addClass('show');
+      valid = false;
+    } else {
+      $errors.removeClass('show');
+      valid = true;
+    }
     return valid;
   };
   updateInput = function(e) {
     return console.log('!');
+  };
+  validateEmail = function(email) {
+    var re;
+    re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   };
   return $.fn.serializeObject = function() {
     var a, o;
