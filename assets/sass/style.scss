@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Maison Neue Demi';
+  src: url('./../fonts/MaisonNeue-Demi.woff2') format('woff2'),
+       url('./../fonts/MaisonNeue-Demi.woff') format('woff');
+}
+@font-face {
+  font-family: 'Maison Neue Light';
+  src: url('./../fonts/MaisonNeue-Light.woff2') format('woff2'),
+       url('./../fonts/MaisonNeue-Light.woff') format('woff');
+}
+
 $light: #fffef6;
 $red: #d5404a;
 html, body {
@@ -5,7 +16,7 @@ html, body {
 	height: 100%;
 	background: black;
 	margin: 0;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	line-height: 1.1em;
 }
@@ -19,18 +30,20 @@ main {
 	display: flex;
 }
 h1 {
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: 500;
 	font-size: 28px;
 	line-height: 28px;
 	margin: 0 0 10px 0;
 	text-transform: uppercase;
+	font-family: 'Maison Neue Demi', 'Maison Neue Light', Helvetica, Arial, sans-serif;
+	font-weight: 500;
 }
 h2 {
 	font-size: 8.5px;
 	line-height: 10px;
 	text-transform: uppercase;
   font-weight: normal;
+  font-family: 'Maison Neue Demi', 'Maison Neue Light', Helvetica, Arial, sans-serif;
+  font-weight: 500;
 	a {
 		color: inherit !important;
 	}
@@ -68,6 +81,7 @@ form {
 		text-transform: uppercase;
 	}
 	input, textarea, select {
+		font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
 		&:-webkit-autofill {
 			background-color: transparent !important;
 		}
