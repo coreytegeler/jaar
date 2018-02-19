@@ -41,8 +41,8 @@
 
 					echo '<div class="dropdown" data-name="' . $sheet_label . '" data-id="' . $id . '" data-required="' . $required . '">';
 						echo '<div class="label"></div>';
-						echo '<div class="options">';
-							echo '<div class="inner">';
+						echo '<div class="inner">';
+							echo '<div class="options content">';
 								echo '<div class="option" data-value=""></div>';
 								foreach( $options as $index => $option ) {
 									echo '<div class="option" data-value="' . $option . '">' . $option . '</div>';
@@ -52,7 +52,12 @@
 					echo '</div>';
 
 				} else if( $type == 'date' ) {
-					echo '<input type="date" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
+					echo '<input type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
+					echo '<div class="dropdown" data-name="' . $sheet_label . '" data-id="' . $id . '" data-required="' . $required . '">';
+						echo '<div class="label"></div>';
+						echo '<div class="inner">';
+						echo '</div>';
+					echo '</div>';
 				}
 			echo '</div>';
 

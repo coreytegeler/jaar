@@ -37,25 +37,23 @@ $(function() {
     $field = $(this).parents('.field');
     return $field.removeClass('focus');
   });
-  $('.select .dropdown').on('click touchend', function(e) {
-    var $dropdown, $field, $opened, $options, $select, optionsHeight;
-    $dropdown = $(this);
-    $field = $dropdown.parents('.field');
-    $select = $dropdown.parents('.select');
-    $options = $dropdown.find('.options');
-    if (!$(e.target).is('.option, .options')) {
-      if ($opened = $('.dropdown.opened').not($dropdown)) {
+  $('.field .dropdown').on('click touchend', function(e) {
+    var $field, $inner, $opened, innerHeight;
+    $field = $(this).parents('.field');
+    $inner = $(this).find('.inner');
+    if (!$(e.target).is('.option, .ui-datepicker-header *')) {
+      if ($opened = $('.field.opened').not($field)) {
         $opened.removeClass('opened');
-        $opened.find('.options').attr('style', '');
+        $opened.find('.inner').attr('style', '');
       }
-      $dropdown.toggleClass('opened');
-      if ($dropdown.is('.opened')) {
-        optionsHeight = $dropdown.find('.inner').innerHeight();
-        return $options.css({
-          height: optionsHeight
+      $field.toggleClass('opened');
+      if ($field.is('.opened')) {
+        innerHeight = $(this).find('.content').innerHeight();
+        return $inner.css({
+          height: innerHeight
         });
       } else {
-        return $options.attr('style', '');
+        return $inner.attr('style', '');
       }
     }
   });
@@ -68,10 +66,28 @@ $(function() {
     value = $(this).attr('data-value');
     $option = $select[0].value = value;
     $field.find('.label').html(value);
-    $dropdown.removeClass('opened');
+    $select.removeClass('opened');
     $field.removeClass('focus');
     $options.find('.selected').removeClass('selected');
     return $(this).addClass('selected');
+  });
+  $('.field.date .inner').datepicker({
+    buttonText: 'date',
+    onSelect: function(date) {
+      var $dropdown, $field, $inner;
+      $field = $(this).parents('.field');
+      $inner = $field.find('.inner');
+      $dropdown = $field.find('.dropdown');
+      $field.find('.label').html(date);
+      $field.find('input').val(date);
+      $field.removeClass('opened');
+      return $inner.attr('style', '');
+    }
+  });
+  $('.field.date').each(function() {
+    var $dateField;
+    $dateField = $(this);
+    return $dateField.find('.ui-datepicker').addClass('content');
   });
   validateForm = function(form) {
     var $errors, $fields, data, errors, valid;

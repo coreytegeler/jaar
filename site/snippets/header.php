@@ -9,6 +9,7 @@
   <meta name="description" content="<?= $site->description()->html() ?>">
 
   <?= js('assets/js/jquery-3.3.1.min.js') ?>
+  <?= js('assets/js/jquery-ui.min.js') ?>
   <?= js('assets/js/scripts.js') ?>
   <?= css('assets/css/style.css') ?>
 

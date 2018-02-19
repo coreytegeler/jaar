@@ -30,22 +30,20 @@ $ () ->
 		$field.removeClass('focus')
 
 
-	$('.select .dropdown').on 'click touchend', (e) ->
-		$dropdown = $(this)
-		$field = $dropdown.parents('.field')
-		$select = $dropdown.parents('.select')
-		$options = $dropdown.find('.options')
-		if !$(e.target).is('.option, .options')
-			if $opened = $('.dropdown.opened').not($dropdown)
+	$('.field .dropdown').on 'click touchend', (e) ->
+		$field = $(this).parents('.field')
+		$inner = $(this).find('.inner')
+		if !$(e.target).is('.option, .ui-datepicker-header *')
+			if $opened = $('.field.opened').not($field)
 				$opened.removeClass('opened')
-				$opened.find('.options').attr('style','')
-			$dropdown.toggleClass('opened')
-			if $dropdown.is('.opened')
-				optionsHeight = $dropdown.find('.inner').innerHeight()
-				$options.css
-					height: optionsHeight
+				$opened.find('.inner').attr('style','')
+			$field.toggleClass('opened')
+			if $field.is('.opened')
+				innerHeight = $(this).find('.content').innerHeight()
+				$inner.css
+					height: innerHeight
 			else
-				$options.attr('style','')
+				$inner.attr('style','')
 
 
 	$('.select .dropdown .option').on 'click touchend', (e) ->
@@ -56,10 +54,25 @@ $ () ->
 		value = $(this).attr('data-value')
 		$option = $select[0].value = value
 		$field.find('.label').html(value)
-		$dropdown.removeClass('opened')
+		$select.removeClass('opened')
 		$field.removeClass('focus')
 		$options.find('.selected').removeClass('selected')
 		$(this).addClass('selected')
+
+	$('.field.date .inner').datepicker
+		buttonText: 'date'
+		onSelect: (date) ->
+			$field = $(this).parents('.field')
+			$inner = $field.find('.inner')
+			$dropdown = $field.find('.dropdown')
+			$field.find('.label').html(date)
+			$field.find('input').val(date)
+			$field.removeClass('opened')
+			$inner.attr('style','')
+
+	$('.field.date').each () ->
+		$dateField = $(this)
+		$dateField.find('.ui-datepicker').addClass('content')
 
 	validateForm = (form) ->
 		valid = true

@@ -13,7 +13,8 @@ html, body {
   margin: 0;
   font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
   font-size: 18px;
-  line-height: 1.1em; }
+  line-height: 1.1em;
+  -webkit-font-smoothing: antialiased; }
 
 ::-webkit-scrollbar {
   width: 0px;
@@ -63,7 +64,7 @@ form {
     form .field.error, form .field.focus {
       background-color: #ffaa9b !important; }
       form .field.error input, form .field.error textarea, form .field.focus input, form .field.focus textarea {
-        background-color: #ffaa9b !important; }
+        background-color: transparent !important; }
   form label {
     padding: 4px 0 0 4px;
     font-size: 12px;
@@ -82,7 +83,7 @@ form {
       outline: none; }
   form input {
     height: 25px; }
-  form input[type=email], form input[type=text], form input[type=date], form textarea {
+  form input[type=email], form input[type=text], form textarea {
     width: calc(100% - 6px);
     font-family: Helvetica, Arial, sans-serif;
     border: none;
@@ -92,42 +93,32 @@ form {
     display: table;
     background-color: transparent !important; }
   form textarea {
-    width: 100%;
-    display: block; }
-  form input[type=date] {
-    background-image: url(../images/arrow-down.png);
-    background-position: calc(100% - 10px) center;
-    background-repeat: no-repeat;
-    background-size: 15px; }
-    form input[type=date]::-webkit-clear-button, form input[type=date]::-webkit-calendar-picker-indicator {
-      opacity: 0;
-      cursor: pointer; }
-    form input[type=date]::-webkit-inner-spin-button {
-      display: none; }
+    display: block;
+    resize: none; }
   form select {
     display: none; }
-  form .select {
+  form .field.select, form .field.date {
     position: relative;
-    overflow: visible; }
-    form .select .dropdown {
+    overflow: visible;
+    background-image: url(../images/arrow-down.png);
+    background-position: calc(100% - 10px) 16px;
+    background-repeat: no-repeat;
+    background-size: 15px; }
+    form .field.select .label, form .field.date .label {
+      width: calc(100% - 10px);
+      height: 25px;
+      padding: 0 5px;
+      font-size: 12px;
+      color: black; }
+    form .field.select .dropdown, form .field.date .dropdown {
       min-height: 25px;
       border: none;
       font-size: 12px;
       cursor: pointer;
       -webkit-appearance: none;
       -webkit-border-radius: 0px;
-      background-image: url(../images/arrow-down.png);
-      background-position: calc(100% - 10px) top;
-      background-repeat: no-repeat;
-      background-size: 15px;
       position: relative; }
-      form .select .dropdown .label {
-        width: calc(100% - 10px);
-        height: 25px;
-        padding: 0 5px;
-        font-size: 12px;
-        color: black; }
-      form .select .dropdown .options {
+      form .field.select .dropdown .inner, form .field.date .dropdown .inner {
         width: 100%;
         height: 0;
         background-color: #d5404a;
@@ -136,18 +127,42 @@ form {
         z-index: 100;
         overflow: hidden;
         transition: height 100ms ease-in-out; }
-        form .select .dropdown .options .option {
-          width: calc(100% - 10px);
-          font-size: 12px;
-          padding: 0 5px; }
-          form .select .dropdown .options .option.selected, form .select .dropdown .options .option:hover {
-            color: black; }
-          form .select .dropdown .options .option:first-child {
-            padding-top: 5px; }
-          form .select .dropdown .options .option:last-child {
-            padding-bottom: 5px; }
-      form .select .dropdown.opened {
-        background-image: url(../images/arrow-right.png); }
+    form .field.select.opened, form .field.date.opened {
+      background-image: url(../images/arrow-right.png); }
+  form .field.select .dropdown .option {
+    width: calc(100% - 10px);
+    font-size: 12px;
+    padding: 0 5px; }
+    form .field.select .dropdown .option.selected, form .field.select .dropdown .option:hover {
+      color: black; }
+    form .field.select .dropdown .option:first-child {
+      padding-top: 5px; }
+    form .field.select .dropdown .option:last-child {
+      padding-bottom: 5px; }
+  form .field.date {
+    background-image: url(../images/arrow-down.png);
+    background-position: calc(100% - 10px) 16px;
+    background-repeat: no-repeat;
+    background-size: 15px; }
+    form .field.date input {
+      display: none; }
+    form .field.date a {
+      color: #fffef6;
+      text-decoration: none; }
+    form .field.date .ui-datepicker-header {
+      display: flex;
+      margin-left: 5px; }
+      form .field.date .ui-datepicker-header .ui-datepicker-title {
+        order: 1;
+        margin-right: .5em; }
+      form .field.date .ui-datepicker-header .ui-datepicker-prev {
+        order: 2;
+        margin-right: .5em; }
+      form .field.date .ui-datepicker-header .ui-datepicker-next {
+        order: 3; }
+    form .field.date table {
+      clear: both;
+      margin-left: 5px; }
   form input[type=submit] {
     color: #fffef6;
     background: #d5404a;
@@ -176,3 +191,18 @@ form {
           content: '*'; }
   form.submitted {
     background-color: green; }
+
+@media all and (max-width: 736px) {
+  form {
+    width: 80%;
+    margin: 40px auto; } }
+
+@media all and (max-width: 480px) {
+  form {
+    width: 100%;
+    margin: 0; } }
+
+@media all and (max-width: 320px) {
+  form {
+    width: 100%;
+    margin: 0; } }
