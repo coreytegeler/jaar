@@ -36,7 +36,9 @@ $ () ->
 		$select = $dropdown.parents('.select')
 		$options = $dropdown.find('.options')
 		if !$(e.target).is('.option, .options')
-			$('.dropdown.opened').not($dropdown).removeClass('opened')
+			if $opened = $('.dropdown.opened').not($dropdown)
+				$opened.removeClass('opened')
+				$opened.find('.options').attr('style','')
 			$dropdown.toggleClass('opened')
 			if $dropdown.is('.opened')
 				optionsHeight = $dropdown.find('.inner').innerHeight()
@@ -44,6 +46,7 @@ $ () ->
 					height: optionsHeight
 			else
 				$options.attr('style','')
+
 
 	$('.select .dropdown .option').on 'click touchend', (e) ->
 		$field = $(this).parents('.select')

@@ -38,13 +38,16 @@ $(function() {
     return $field.removeClass('focus');
   });
   $('.select .dropdown').on('click touchend', function(e) {
-    var $dropdown, $field, $options, $select, optionsHeight;
+    var $dropdown, $field, $opened, $options, $select, optionsHeight;
     $dropdown = $(this);
     $field = $dropdown.parents('.field');
     $select = $dropdown.parents('.select');
     $options = $dropdown.find('.options');
     if (!$(e.target).is('.option, .options')) {
-      $('.dropdown.opened').not($dropdown).removeClass('opened');
+      if ($opened = $('.dropdown.opened').not($dropdown)) {
+        $opened.removeClass('opened');
+        $opened.find('.options').attr('style', '');
+      }
       $dropdown.toggleClass('opened');
       if ($dropdown.is('.opened')) {
         optionsHeight = $dropdown.find('.inner').innerHeight();
