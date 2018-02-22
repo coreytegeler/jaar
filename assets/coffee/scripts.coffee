@@ -54,8 +54,8 @@ $ () ->
 		value = $(this).attr('data-value')
 		$option = $select[0].value = value
 		$field.find('.label').html(value)
-		$select.removeClass('opened')
-		$field.removeClass('focus')
+		$field.removeClass('opened focus')
+		$field.find('.inner').attr('style','')
 		$options.find('.selected').removeClass('selected')
 		$(this).addClass('selected')
 
