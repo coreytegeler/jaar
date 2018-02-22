@@ -165,6 +165,8 @@ form {
     form .field.date table {
       clear: both;
       margin-left: 5px; }
+  form .field.dateSubmitted {
+    display: none; }
   form input[type=submit] {
     color: #fffef6;
     background: #d5404a;

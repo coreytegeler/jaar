@@ -73,11 +73,13 @@ $(function() {
   });
   $('.field.date .inner').datepicker({
     buttonText: 'date',
-    onSelect: function(date) {
-      var $dropdown, $field, $inner;
+    onSelect: function(dateStr) {
+      var $dropdown, $field, $inner, date, dateObj;
       $field = $(this).parents('.field');
       $inner = $field.find('.inner');
       $dropdown = $field.find('.dropdown');
+      dateObj = moment(dateStr, 'MM/DD/YYYY');
+      date = dateObj.format('MMMM Do YYYY');
       $field.find('.label').html(date);
       $field.find('input').val(date);
       $field.removeClass('opened');
@@ -97,7 +99,7 @@ $(function() {
     errors = [];
     $errors = $('.errors');
     $fields.each(function(i, field) {
-      var $field, $input, $primary_field, $primary_input, primary_value, value;
+      var $field, $input, $primary_field, $primary_input, date, dateObj, primary_value, value;
       $field = $(field);
       $input = $field.find('input, select');
       value = $input.val();
@@ -117,6 +119,11 @@ $(function() {
           $field.addClass('error');
           errors.push('unverifiedEmail');
         }
+      }
+      if ($field.is('.dateSubmitted')) {
+        dateObj = moment();
+        date = dateObj.format('MMMM Do YYYY');
+        $field.find('input').val(date);
       }
       return true;
     });

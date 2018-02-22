@@ -8,9 +8,10 @@
   <title><?= $site->title()->html() ?></title>
   <meta name="description" content="<?= $site->description()->html() ?>">
 
-  <?php $version = 1.1; ?>
+  <?php $version = 1.2; ?>
   <?= js('assets/js/jquery-3.3.1.min.js') ?>
   <?= js('assets/js/jquery-ui.min.js') ?>
+  <?= js('assets/js/moment.js?') ?>
   <?= js('assets/js/scripts.js?v='.$version) ?>
   <?= css('assets/css/style.css?v='.$version) ?>
 

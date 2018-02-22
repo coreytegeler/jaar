@@ -10,6 +10,9 @@
 	echo '<form id="' . $slug . '_form" autocomplete="off" novalidate>';
 		echo '<h1>' . $page->title() . '</h1>';
 		echo '<h2>' . $page->subtitle()->kirbytext() . '</h2>';
+		echo '<div class="field dateSubmitted">';
+			echo '<input type="text" name="Date Submitted">';
+		echo '</div>';
 		$fields = $page->fields();
 		foreach( $fields->toStructure() as $index => $field ) {
 			$type = $field->_fieldset();
@@ -67,7 +70,6 @@
 					echo '<input type="email" class="verify" name="verify-' . $label . '"' . $required . '>';
 				echo '</div>';
 			}
-
 		}
 		echo '<ul class="errors">';
 			echo '<li>ERRORS:</li>';

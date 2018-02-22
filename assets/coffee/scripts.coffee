@@ -61,10 +61,12 @@ $ () ->
 
 	$('.field.date .inner').datepicker
 		buttonText: 'date'
-		onSelect: (date) ->
+		onSelect: (dateStr) ->
 			$field = $(this).parents('.field')
 			$inner = $field.find('.inner')
 			$dropdown = $field.find('.dropdown')
+			dateObj = moment(dateStr, 'MM/DD/YYYY')
+			date = dateObj.format('MMMM Do YYYY')
 			$field.find('.label').html(date)
 			$field.find('input').val(date)
 			$field.removeClass('opened')
@@ -97,6 +99,11 @@ $ () ->
 					$primary_field.addClass('error')
 					$field.addClass('error')
 					errors.push('unverifiedEmail')
+			if $field.is('.dateSubmitted')
+				dateObj = moment()
+				date = dateObj.format('MMMM Do YYYY')
+				$field.find('input').val(date)
+				
 			return true
 
 		$('.errors .error').each (i, error) ->

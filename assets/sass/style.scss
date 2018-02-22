@@ -209,6 +209,9 @@ form {
   		margin-left: 5px;
   	}
 	}
+	.field.dateSubmitted {
+		display: none;
+	}
 	input[type=submit] {
 		color: $light;
 		background: $red;
