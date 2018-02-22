@@ -37,10 +37,10 @@ $(function() {
     $field = $(this).parents('.field');
     return $field.removeClass('focus');
   });
-  $('.field .dropdown').on('click touchend', function(e) {
+  $('.field.select, .field.date').on('click touchend', function(e) {
     var $field, $inner, $opened, innerHeight;
-    $field = $(this).parents('.field');
-    $inner = $(this).find('.inner');
+    $field = $(this);
+    $inner = $field.find('.inner');
     if (!$(e.target).is('.option, .ui-datepicker-header *')) {
       if ($opened = $('.field.opened').not($field)) {
         $opened.removeClass('opened');
@@ -48,7 +48,7 @@ $(function() {
       }
       $field.toggleClass('opened');
       if ($field.is('.opened')) {
-        innerHeight = $(this).find('.content').innerHeight();
+        innerHeight = $field.find('.content').innerHeight();
         return $inner.css({
           height: innerHeight
         });
@@ -91,6 +91,9 @@ $(function() {
     $dateField = $(this);
     return $dateField.find('.ui-datepicker').addClass('content');
   });
+  $('.field.email, .field.text, .field.textarea').on('click', function() {
+    return $(this).find('input').focus();
+  });
   validateForm = function(form) {
     var $errors, $fields, data, errors, valid;
     valid = true;
@@ -106,7 +109,7 @@ $(function() {
       if ($field.is('.email') && !validateEmail(value)) {
         errors.push('invalidEmail');
       }
-      if ($field.is('.required') && !value || !value.length) {
+      if ($field.is('.required') && (!value || !value.length)) {
         $field.addClass('error');
         errors.push('requiredField');
       }

@@ -72,7 +72,8 @@ form {
     font-size: 12px;
     color: #d5404a;
     text-transform: uppercase;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    pointer-events: none; }
   form input, form textarea, form select {
     font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif; }
     form input:-webkit-autofill, form textarea:-webkit-autofill, form select:-webkit-autofill {
@@ -105,7 +106,8 @@ form {
     background-image: url(../images/arrow-down.png);
     background-position: calc(100% - 10px) 16px;
     background-repeat: no-repeat;
-    background-size: 15px; }
+    background-size: 15px;
+    cursor: pointer; }
     form .field.select .label, form .field.date .label {
       width: calc(100% - 10px);
       height: 25px;
@@ -116,7 +118,6 @@ form {
       min-height: 25px;
       border: none;
       font-size: 12px;
-      cursor: pointer;
       -webkit-appearance: none;
       -webkit-border-radius: 0px;
       position: relative; }
@@ -130,7 +131,8 @@ form {
         overflow: hidden;
         transition: height 100ms ease-in-out; }
     form .field.select.opened, form .field.date.opened {
-      background-image: url(../images/arrow-right.png); }
+      background-image: url(../images/arrow-right.png);
+      background-color: #ffaa9b; }
   form .field.select .dropdown .option {
     width: calc(100% - 10px);
     font-size: 12px;

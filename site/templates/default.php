@@ -21,7 +21,7 @@
 			if( $sheet_label->empty() ) {
 				$sheet_label = $label;
 			}
-			$id = preg_replace( '/\s+/', '', $sheet_label );
+			$id = preg_replace( '/[^A-Za-z0-9\-]/', '', $sheet_label );
 			$options = $field->options()->split(',');
 			$required = ( $field->required() == 'true' ? ' required' : '' );
 

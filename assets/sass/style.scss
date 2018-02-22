@@ -84,6 +84,7 @@ form {
 		color: $red;
 		text-transform: uppercase;
 		letter-spacing: 1px;
+		pointer-events: none;
 	}
 	input, textarea, select {
 		font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
@@ -128,6 +129,7 @@ form {
   	background-position: calc(100% - 10px) 16px;
   	background-repeat: no-repeat;
   	background-size: 15px;
+  	cursor: pointer;
   	.label {
 			width: calc(100% - 10px);
 			height: 25px;
@@ -139,7 +141,6 @@ form {
 			min-height: 25px;
 			border: none;
 			font-size: 12px;
-			cursor: pointer;
 			-webkit-appearance: none;
 	  	-webkit-border-radius: 0px;
 			position: relative;
@@ -156,6 +157,7 @@ form {
 		}
 		&.opened {
 			background-image: url(images/arrow-right.png);
+			background-color: $pink;
 			.options {
 				
 			}

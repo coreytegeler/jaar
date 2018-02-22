@@ -30,16 +30,16 @@ $ () ->
 		$field.removeClass('focus')
 
 
-	$('.field .dropdown').on 'click touchend', (e) ->
-		$field = $(this).parents('.field')
-		$inner = $(this).find('.inner')
+	$('.field.select, .field.date').on 'click touchend', (e) ->
+		$field = $(this)
+		$inner = $field.find('.inner')
 		if !$(e.target).is('.option, .ui-datepicker-header *')
 			if $opened = $('.field.opened').not($field)
 				$opened.removeClass('opened')
 				$opened.find('.inner').attr('style','')
 			$field.toggleClass('opened')
 			if $field.is('.opened')
-				innerHeight = $(this).find('.content').innerHeight()
+				innerHeight = $field.find('.content').innerHeight()
 				$inner.css
 					height: innerHeight
 			else
@@ -76,6 +76,9 @@ $ () ->
 		$dateField = $(this)
 		$dateField.find('.ui-datepicker').addClass('content')
 
+	$('.field.email, .field.text, .field.textarea').on 'click', () ->
+		$(this).find('input').focus()
+
 	validateForm = (form) ->
 		valid = true
 		data = $(form).serializeObject()
@@ -88,7 +91,7 @@ $ () ->
 			value = $input.val()
 			if $field.is('.email') && !validateEmail(value)
 				errors.push('invalidEmail')
-			if $field.is('.required') && !value || !value.length
+			if $field.is('.required') && (!value || !value.length)
 				$field.addClass('error')
 				errors.push('requiredField')
 			if $field.is('.verify')
