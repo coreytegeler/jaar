@@ -1,0 +1,15 @@
+title: Album
+
+pages: false
+
+files:
+  sortable: true
+  fields:
+    trackname:
+      label: Track Name
+      type:  text
+
+fields:
+  title:
+    label: Title
+    type:  text

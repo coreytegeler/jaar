@@ -1,8 +1,13 @@
 title: Site
 
-pages: form
+pages:
+  -page
+  -form
 
 fields:
   title:
     label: Title
     type:  text
+  googleScript:
+    label: Google Script URL
+    type: url

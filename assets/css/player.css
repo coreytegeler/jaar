@@ -1,0 +1,310 @@
+#player {
+	display: table;
+	vertical-align: top;
+  color: #d5404a;  
+  margin: auto;
+}
+
+#player .icon {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	stroke-width: 0;
+	stroke: transparent;
+	fill: #d5404a;
+  cursor: pointer;
+}
+
+#player .icon-play, #player .icon-pause {
+	width: 1em;
+	margin-left: .2em
+}
+
+#player .audiojs {
+	align-self: center;
+}
+
+#player span.played {
+  width: 90px;
+}
+
+#player .sc-player {
+	position: relative
+}
+#player .sc-player.empty {
+	visibility: hidden
+}
+#player a {
+	cursor: pointer;
+	display: inline-block;
+}
+#player a span {
+	display: none
+}
+#player a.prev, #player a.next, #player a.sc-play {
+	vertical-align: top;
+	font-size: 14px;
+	margin: 0 2px;
+	transition: color .2s linear
+}
+#player a.prev:first-child, #player a.next:first-child, #player a.sc-play:first-child {
+/*	margin-left: 0*/
+}
+#player a.prev i, #player a.next i, #player a.sc-play i {
+	line-height: 40px;
+	transform: scale(1, .7)
+}
+#player a.prev:hover, #player a.next:hover, #player a.sc-play:hover {
+	color: #666
+}
+#player a.sc-play {
+	/*margin-left: 4px*/
+}
+#player a.sc-play i {
+	transform: scale(.8, .7)
+}
+#player a.sc-play.nowPlaying {
+	/*margin-right: 4px*/
+}
+#player a.next {
+	/*margin-right: 10px*/
+}
+#player a.track {
+	/*width: 100px;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#player .controls {
+	background-image: none;
+	text-transform: lowercase;
+	height: 40px;
+	margin: 0;
+	text-align: right;
+	white-space: nowrap
+}
+#player .timeline {
+	position: absolute;
+	/*top: 25px;
+	right: 0;
+	height: 1px;
+	width: 100px;*/
+	padding: 0;
+	cursor: pointer
+}
+#player .timeline div {
+	height: 1px;
+	position: absolute;
+	/*top: 5px;
+	left: 0;*/
+	background-color: #fff
+}
+#player .timeline div.buffer {
+	width: 0;
+	z-index: 2
+}
+#player .timeline div.total {
+	width: 100%;
+	z-index: 1
+}
+#player .timeline div.play-status {
+	width: 0;
+	z-index: 3
+}
+
+#player .time {
+  padding-top: 0px;
+  font-size: 13px;
+  line-height: 18px;
+	font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+}
+#player .audiojs {
+  margin-bottom: 20px;
+  opacity: .5;
+}
+
+#player .audiojs button {
+	background: transparent;
+	border: 0;
+	padding: 0;
+	-webkit-appearance: none;
+}
+
+#player .play-pause {
+	display: table;
+	margin: auto;
+}
+#player .time {
+	display: table;
+	margin: auto;
+}
+
+#player .audiojs .play-pause .ghosts {
+	display: none;
+  font-size: .67em;
+}
+
+// #player .audiojs.error .play-pause .ghosts, #player .audiojs.loading .play-pause .ghosts, #player .audiojs.no-tracks .play-pause .ghosts {
+// 	display: block
+// }
+#player .audiojs.error .play-pause button, #player .audiojs.loading #player .play-pause button, #player .audiojs.no-tracks #player .play-pause button {
+	display: none
+}
+#player .audiojs .pause {
+	display: none
+}
+
+
+
+#player .audiojs .track-name {
+	margin-bottom: 0px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  color: #d5404a;
+  font-size: 13px;
+  line-height: 18px;
+	font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal; 
+	text-align: center; 
+}
+#player .audiojs .scrubber {
+	position: relative;
+	height: 7px;
+  width: 300px;
+	display: none
+}
+
+#player .scrubber .progress, #player .scrubber .loaded {
+  display: none;
+}
+
+#player .audiojs .progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 14px;
+	width: 0;
+	z-index: 1
+}
+#player .audiojs .progress:after {
+	position: absolute;
+	right: -4px;
+	top: 0;
+	content: '\25BC\FE0E';
+	font-size: .5em;
+	line-height: 1
+}
+#player .audiojs .loaded {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 1px;
+	width: 0;
+	background: rgba(255, 255, 255, 0.5)
+}
+/*.audiojs .time {
+	display: none
+}
+*/
+
+#player .audiojs {
+  height: 50px;   
+}
+
+#player .audiojs .error-message {
+	display: none
+}
+#player .audiojs.playing .play, #player .audiojs.playing .loading, #player .audiojs.playing .error {
+	display: none
+}
+#player .audiojs.playing .pause {
+	display: inline-block
+}
+#player .audiojs.playing .scrubber {
+	display: block
+}
+#player .audiojs.has-played {
+	display: block;
+	opacity: 1;
+}
+#player .audiojs.loading .play, #player .audiojs.loading .pause, #player .audiojs.loading .error {
+	display: none
+}
+#player .audiojs.loading .loading {
+	display: block
+}
+#player .audiojs.error .play, #player .audiojs.error .pause, #player .audiojs.error .loading {
+	display: none
+}
+#player .audiojs.error .error {
+	display: block
+}
+#player .audiojs.error .play-pause * {
+	cursor: pointer;
+}
+#player .audiojs.error .error-message {
+	display: block
+}
+#player .audiojs .next, .audiojs .prev {
+	opacity: .4;
+
+}
+#player .audiojs.nav-next .next, #player .audiojs.nav-prev .prev {
+	opacity: 1;
+	cursor: pointer
+}
+#player a {
+	color: #d5404a;
+	text-decoration: none
+}
+#player a:hover {
+	color: #d5404a
+}
+#player a.playing {
+	color: #d5404a
+}
+#player ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@-webkit-keyframes backandforth {
+	0% {
+		left: 0;
+		transform: translateX(0)
+	}
+	10% {
+		left: 0;
+		transform: translateX(0)
+	}
+	90% {
+		left: 100%;
+		transform: translateX(-100%)
+	}
+	100% {
+		left: 100%;
+		transform: translateX(-100%)
+	}
+}
+@keyframes backandforth {
+	0% {
+		left: 0;
+		transform: translateX(0)
+	}
+	10% {
+		left: 0;
+		transform: translateX(0)
+	}
+	90% {
+		left: 100%;
+		transform: translateX(-100%)
+	}
+	100% {
+		left: 100%;
+		transform: translateX(-100%)
+	}
+}

@@ -13,15 +13,14 @@ fields:
     fieldsets:
       text:
         label: Text
-        entry: >
-          <strong>{{label}}</strong>
+        snippet: preview
         fields:
           label:
-            label: Label
+            label: Form Label
             type: text
             width: 1/2
           sheet_label:
-            label: Sheet Label
+            label: Google Sheet Label
             type: text
             width: 1/2
           instruct:
@@ -35,15 +34,14 @@ fields:
             width: 1/2
       textarea:
         label: Text Area
-        entry: >
-          <strong>{{label}}</strong>
+        snippet: preview
         fields:
           label:
-            label: Label
+            label: Form Label
             type: text
             width: 1/2
           sheet_label:
-            label: Sheet Label
+            label: Google Sheet Label
             type: text
             width: 1/2
           instruct:
@@ -57,15 +55,14 @@ fields:
             width: 1/2
       email:
         label: Email
-        entry: >
-          <strong>{{label}}</strong>
+        snippet: preview
         fields:
           label:
-            label: Label
+            label: Form Label
             type: text
             width: 1/2
           sheet_label:
-            label: Sheet Label
+            label: Google Sheet Label
             type: text
             width: 1/2
           instruct:
@@ -82,15 +79,14 @@ fields:
             width: 1/2
       select:
         label: Select
-        entry: >
-          <strong>{{label}}</strong>
+        snippet: preview
         fields:
           label:
-            label: Label
+            label: Form Label
             type: text
             width: 1/2
           sheet_label:
-            label: Sheet Label
+            label: Google Sheet Label
             type: text
             width: 1/2
           instruct:
@@ -113,15 +109,14 @@ fields:
             width: 1/2
       date:
         label: Date
-        entry: >
-          <strong>{{label}}</strong>
+        snippet: preview
         fields:
           label:
-            label: Label
+            label: Form Label
             type: text
             width: 1/2
           sheet_label:
-            label: Sheet Label
+            label: Google Sheet Label
             type: text
             width: 1/2
           instruct:
@@ -133,17 +128,21 @@ fields:
             type: toggle
             default: false
             width: 1/2
+  googleSheetId:
+    label: Google Sheet ID
+    type: text
+    help: Open Google Sheet, copy letters and numbers between forward slashes (i.e. 5FlFSgs_6gGS6gsFfs-qp4Gg8t7Px)
       # radio:
       #   label: Radio
       #   entry: >
       #     <strong>{{label}}</strong>
       #   fields:
       #     label:
-      #       label: Label
+      #       label: Form Label
       #       type: text
       #       width: 1/2
       #     sheet_label:
-      #       label: Sheet Label
+      #       label: Google Sheet Label
       #       type: text
       #       width: 1/2
       #     instruct:

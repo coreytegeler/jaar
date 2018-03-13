@@ -1,3 +1,4 @@
+<?php if( !isset( $_POST['request'] ) ) { ?>
 <!doctype html>
 <html lang="<?= site()->language() ? site()->language()->code() : 'en' ?>">
 <head>
@@ -7,13 +8,11 @@
 
   <title><?= $site->title()->html() ?></title>
   <meta name="description" content="<?= $site->description()->html() ?>">
-
-  <?php $version = 1.2; ?>
-  <?= js('assets/js/jquery-3.3.1.min.js') ?>
-  <?= js('assets/js/jquery-ui.min.js') ?>
-  <?= js('assets/js/moment.js?') ?>
-  <?= js('assets/js/scripts.js?v='.$version) ?>
-  <?= css('assets/css/style.css?v='.$version) ?>
-
 </head>
-<body>
+<body data-site-url="<?= $site->url() ?>">
+  <main class="main" role="main" id="<?= $page->slug() ?>">
+    <nav>
+      <?php echo page( 'home' )->text()->kirbytext();?>
+    </nav>
+    <div id="card" <?= ($page->slug() != 'home' ? 'class="show"' : '')?>>
+<?php } ?>

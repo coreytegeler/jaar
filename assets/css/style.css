@@ -1,36 +1,35 @@
 @font-face {
-  font-family: 'Maison Neue Demi';
-  src: url("./../fonts/MaisonNeue-Demi.woff2") format("woff2"), url("./../fonts/MaisonNeue-Demi.woff") format("woff"); }
+  font-family: 'Maison Neue';
+  src: url("./../fonts/MaisonNeue-NJ-Demi.woff") format("woff");
+  font-weight: 500; }
 
 @font-face {
-  font-family: 'Maison Neue Light';
-  src: url("./../fonts/MaisonNeue-Light.woff2") format("woff2"), url("./../fonts/MaisonNeue-Light.woff") format("woff"); }
+  font-family: 'Maison Neue';
+  src: url("./../fonts/MaisonNeue-NJ-Light.woff") format("woff");
+  font-weight: 400; }
 
 html, body {
   width: 100%;
   height: 100%;
-  background: black;
+  background: lightgrey;
   margin: 0;
-  font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  line-height: 1.1em;
+  font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 22px;
   -webkit-font-smoothing: antialiased; }
+  html *, body * {
+    -webkit-font-smoothing: antialiased; }
 
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; }
-
-main {
-  width: 100%;
-  height: 100%;
-  display: flex; }
 
 h1 {
   font-size: 28px;
   line-height: 28px;
   margin: 0 0 10px 0;
   text-transform: uppercase;
-  font-family: 'Maison Neue Demi', 'Maison Neue Light', Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 1px; }
 
@@ -38,179 +37,316 @@ h2 {
   font-size: 8.5px;
   line-height: 10px;
   text-transform: uppercase;
-  font-weight: normal;
-  font-family: 'Maison Neue Demi', 'Maison Neue Light', Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 1px; }
   h2 a {
     color: inherit !important; }
 
-form {
-  width: 350px;
-  height: 70vh;
-  overflow-y: auto;
-  padding: 15px;
-  margin: auto;
-  background: #fffef6;
-  color: #d5404a; }
-  form .field {
-    width: calc(100% - 2px);
-    border: solid #d5404a;
-    border-width: 1px 1px 0 1px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    form .field:last-of-type {
-      border-bottom-width: 1px; }
-    form .field.error, form .field.focus {
-      background-color: #ffaa9b !important; }
-      form .field.error input, form .field.error textarea, form .field.focus input, form .field.focus textarea {
-        background-color: transparent !important; }
-  form label {
-    padding: 4px 0 0 4px;
-    font-size: 12px;
-    color: #d5404a;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    pointer-events: none; }
-  form input, form textarea, form select {
-    font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif; }
-    form input:-webkit-autofill, form textarea:-webkit-autofill, form select:-webkit-autofill {
-      background-color: transparent !important; }
-  form input, form textarea {
-    margin: 0;
-    font-size: 18px;
-    background: none;
-    border: none; }
-    form input:focus, form textarea:focus {
-      outline: none; }
-  form input {
-    height: 25px; }
-  form input[type=email], form input[type=text], form textarea {
-    width: calc(100% - 6px);
-    border: none;
-    padding-left: 5px;
-    color: black;
-    font-size: 12px;
-    display: table;
-    background-color: transparent !important; }
-  form textarea {
-    display: block;
-    resize: none; }
-  form select {
-    display: none; }
-  form .field.select, form .field.date {
-    position: relative;
-    overflow: visible;
-    background-image: url(../images/arrow-down.png);
-    background-position: calc(100% - 10px) 16px;
-    background-repeat: no-repeat;
-    background-size: 15px;
-    cursor: pointer; }
-    form .field.select .label, form .field.date .label {
-      width: calc(100% - 10px);
-      height: 25px;
-      padding: 0 5px;
-      font-size: 12px;
-      color: black; }
-    form .field.select .dropdown, form .field.date .dropdown {
-      min-height: 25px;
-      border: none;
-      font-size: 12px;
-      -webkit-appearance: none;
-      -webkit-border-radius: 0px;
-      position: relative; }
-      form .field.select .dropdown .inner, form .field.date .dropdown .inner {
-        width: 100%;
-        height: 0;
-        background-color: #d5404a;
-        color: #fffef6;
-        display: block;
-        z-index: 100;
-        overflow: hidden;
-        transition: height 100ms ease-in-out; }
-    form .field.select.opened, form .field.date.opened {
-      background-image: url(../images/arrow-right.png);
-      background-color: #ffaa9b; }
-  form .field.select .dropdown .option {
-    width: calc(100% - 10px);
-    font-size: 12px;
-    padding: 0 5px; }
-    form .field.select .dropdown .option.selected, form .field.select .dropdown .option:hover {
-      color: black; }
-    form .field.select .dropdown .option:first-child {
-      padding-top: 5px; }
-    form .field.select .dropdown .option:last-child {
-      padding-bottom: 5px; }
-  form .field.date {
-    background-image: url(../images/arrow-down.png);
-    background-position: calc(100% - 10px) 16px;
-    background-repeat: no-repeat;
-    background-size: 15px; }
-    form .field.date input {
-      display: none; }
-    form .field.date a {
-      color: #fffef6;
+main {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  perspective: 1000px; }
+
+nav {
+  width: 300px;
+  height: calc(100% - 40px);
+  padding: 20px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; }
+  nav a {
+    color: black; }
+    nav a.external {
+      cursor: alias; }
+  nav.fixed {
+    position: fixed;
+    left: 0;
+    top: 0; }
+
+#card {
+  width: 725px;
+  min-height: calc(100vh - 40px);
+  margin: 0 auto 0 -9999999999px;
+  background: #fffdf6;
+  color: #ce4049;
+  box-shadow: -2px 4px 40px -9px #8c8c8c;
+  pointer-events: all;
+  position: absolute;
+  left: calc(50% - 362.5px);
+  top: 40px;
+  transition: transform 1s ease-in-out, height 500ms ease-in-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 100; }
+  #card .content {
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    padding: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    background: #fffdf6;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    overflow: hidden; }
+    #card .content * {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden; }
+    #card .content a {
+      color: #ce4049;
       text-decoration: none; }
-    form .field.date .ui-datepicker-header {
-      display: flex;
-      margin-left: 5px; }
-      form .field.date .ui-datepicker-header .ui-datepicker-title {
-        order: 1;
-        margin-right: .5em; }
-      form .field.date .ui-datepicker-header .ui-datepicker-prev {
-        order: 2;
-        margin-right: .5em; }
-      form .field.date .ui-datepicker-header .ui-datepicker-next {
-        order: 3; }
-    form .field.date table {
-      clear: both;
-      margin-left: 5px; }
-  form .field.dateSubmitted {
-    display: none; }
-  form input[type=submit] {
-    color: #fffef6;
-    background: #d5404a;
-    height: 35px;
-    width: 350px;
-    margin-top: 20px;
-    border: none;
-    text-transform: uppercase;
-    font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif; }
-    form input[type=submit]:hover {
-      cursor: pointer; }
-  form ul.errors {
-    text-transform: uppercase;
-    margin: 0;
-    padding: 1em 0 0 0;
-    display: none; }
-    form ul.errors.show {
+    #card .content .close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background-image: url(../images/close.png);
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-size: cover; }
+      #card .content .close:hover {
+        cursor: pointer; }
+    #card .content.front, #card .content.back {
       display: block; }
-    form ul.errors li {
+    #card .content.back {
+      transform: translate3d(0, 0, 0) rotateY(180deg);
+      backface-visibility: visible;
+      -webkit-backface-visibility: visible; }
+    #card .content.show {
+      height: auto;
+      min-height: calc(100vh - 100px);
+      z-index: 100; }
+    #card .content#posters {
+      background-color: black;
+      color: #fffdf6; }
+      #card .content#posters .close {
+        background-position: top center; }
+  #card.flipped {
+    transform: translate3d(0, 0, 0) rotateY(180deg); }
+  #card.show {
+    margin-left: auto; }
+  #card .concerts .concert {
+    width: calc(100% - 10px);
+    border: solid #ce4049;
+    border-width: 1px 1px 0 1px;
+    padding: 4px; }
+    #card .concerts .concert .date {
+      text-transform: uppercase; }
+    #card .concerts .concert:last-of-type {
+      border-bottom-width: 1px; }
+  #card .figures {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    #card .figures figure {
+      width: calc(50% - 15px);
+      height: auto;
+      margin: 0 0 40px 0; }
+      #card .figures figure img {
+        width: 100%; }
+      #card .figures figure figcaption {
+        text-transform: uppercase;
+        font-size: 10px;
+        line-height: 12px;
+        text-align: center; }
+      #card .figures figure ul {
+        padding: 0;
+        margin: 0;
+        list-style: none; }
+        #card .figures figure ul li {
+          margin: 5px 0 0 0; }
+          #card .figures figure ul li.album_title {
+            margin-bottom: 20px;
+            text-transform: uppercase; }
+  #card form {
+    width: 100%; }
+    #card form .field {
+      width: calc(100% - 2px);
+      border: solid #ce4049;
+      border-width: 1px 1px 0 1px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+      #card form .field.last {
+        border-bottom-width: 1px; }
+      #card form .field.error, #card form .field.focus {
+        background-color: #ffaa9b !important; }
+        #card form .field.error input, #card form .field.error textarea, #card form .field.focus input, #card form .field.focus textarea {
+          background-color: transparent !important; }
+    #card form label {
+      padding: 4px 0 0 4px;
+      font-size: 12px;
+      color: #ce4049;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      pointer-events: none; }
+    #card form input, #card form textarea, #card form select {
+      font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
+      font-weight: 400; }
+      #card form input:-webkit-autofill, #card form textarea:-webkit-autofill, #card form select:-webkit-autofill {
+        background-color: transparent !important; }
+    #card form input, #card form textarea {
+      margin: 0;
+      font-size: 18px;
+      background: none;
+      border: none; }
+      #card form input:focus, #card form textarea:focus {
+        outline: none; }
+    #card form input {
+      height: 25px; }
+    #card form input[type=email], #card form input[type=text], #card form textarea {
+      width: calc(100% - 6px);
+      border: none;
+      padding-left: 5px;
+      color: black;
+      font-size: 12px;
+      display: table;
+      background-color: transparent !important; }
+    #card form textarea {
+      display: block;
+      resize: none; }
+    #card form select {
+      display: none; }
+    #card form .field.select, #card form .field.date {
+      position: relative;
+      overflow: visible;
+      background-image: url(../images/arrow-down.png);
+      background-position: calc(100% - 10px) 16px;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      cursor: pointer; }
+      #card form .field.select .label, #card form .field.date .label {
+        width: calc(100% - 10px);
+        height: 25px;
+        padding: 0 5px;
+        font-size: 12px;
+        color: black; }
+      #card form .field.select .dropdown, #card form .field.date .dropdown {
+        min-height: 25px;
+        border: none;
+        font-size: 12px;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        position: relative; }
+        #card form .field.select .dropdown .inner, #card form .field.date .dropdown .inner {
+          width: 100%;
+          height: 0;
+          background-color: #ce4049;
+          color: #fffdf6;
+          display: block;
+          z-index: 100;
+          overflow: hidden;
+          transition: height 100ms ease-in-out; }
+      #card form .field.select.opened, #card form .field.date.opened {
+        background-image: url(../images/arrow-right.png);
+        background-color: #ffaa9b; }
+    #card form .field.select .dropdown .option {
+      width: calc(100% - 10px);
+      font-size: 12px;
+      padding: 0 5px; }
+      #card form .field.select .dropdown .option.selected, #card form .field.select .dropdown .option:hover {
+        color: black; }
+      #card form .field.select .dropdown .option:first-child {
+        padding-top: 5px; }
+      #card form .field.select .dropdown .option:last-child {
+        padding-bottom: 5px; }
+    #card form .field.date {
+      background-image: url(../images/arrow-down.png);
+      background-position: calc(100% - 10px) 16px;
+      background-repeat: no-repeat;
+      background-size: 15px; }
+      #card form .field.date input {
+        display: none; }
+      #card form .field.date a {
+        color: #fffdf6;
+        text-decoration: none; }
+      #card form .field.date .ui-datepicker-header {
+        display: flex;
+        margin-left: 5px; }
+        #card form .field.date .ui-datepicker-header .ui-datepicker-title {
+          order: 1;
+          margin-right: .5em; }
+        #card form .field.date .ui-datepicker-header .ui-datepicker-prev {
+          order: 2;
+          margin-right: .5em; }
+        #card form .field.date .ui-datepicker-header .ui-datepicker-next {
+          order: 3; }
+      #card form .field.date table {
+        clear: both;
+        margin-left: 5px; }
+        #card form .field.date table a {
+          color: #fffdf6 !important; }
+    #card form .field.hidden {
+      display: none; }
+    #card form input[type=submit] {
+      color: #fffdf6;
+      background: #ce4049;
+      height: 35px;
+      width: 100%;
+      margin-top: 20px;
+      border: none;
+      text-transform: uppercase; }
+      #card form input[type=submit]:hover {
+        cursor: pointer; }
+    #card form ul.errors {
+      text-transform: uppercase;
+      margin: 0;
+      padding: 1em 0 0 0;
+      display: none; }
+      #card form ul.errors.show {
+        display: block; }
+      #card form ul.errors li {
+        font-size: 12px;
+        line-height: 15px;
+        list-style: none; }
+        #card form ul.errors li.error {
+          display: none; }
+          #card form ul.errors li.error.show {
+            display: block; }
+          #card form ul.errors li.error::before {
+            content: '*'; }
+    #card form .thankyou {
       font-size: 12px;
       line-height: 15px;
-      list-style: none; }
-      form ul.errors li.error {
-        display: none; }
-        form ul.errors li.error.show {
-          display: block; }
-        form ul.errors li.error::before {
-          content: '*'; }
-  form.submitted {
-    background-color: green; }
+      padding: 1em 0 0 0;
+      text-transform: uppercase;
+      display: none; }
+    #card form.submitted .thankyou {
+      display: block; }
 
 @media all and (max-width: 736px) {
-  form {
+  #card {
     width: 80%;
-    margin: 40px auto; } }
+    left: 10%; } }
+
+@media all and (max-width: 600px) {
+  #card {
+    width: 90%;
+    left: 5%; } }
 
 @media all and (max-width: 480px) {
-  form {
+  main {
+    overflow: hidden; }
+  #card {
     width: 100%;
-    margin: 0; } }
-
-@media all and (max-width: 320px) {
-  form {
-    width: 100%;
-    margin: 0; } }
+    height: 100%;
+    min-height: auto;
+    margin: 0;
+    left: 0;
+    top: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; }
+  nav {
+    width: calc(100% - 40px);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; } }

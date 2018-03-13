@@ -1,0 +1,8 @@
+title: Discography
+
+pages: album
+
+fields:
+  title:
+    label: Title
+    type:  text
