@@ -3,17 +3,23 @@ $ () ->
 	$card = $('#card')
 	siteUrl = $body.attr('data-site-url')
 
-	$card.find('.content').first().addClass('front').addClass('show')
 
-	$('nav a').each () ->
-		if this.href.indexOf(siteUrl) == -1
-			$(this).addClass('external').attr('target', '_blank')
+	setupPage = () ->
+		setupCard()
+		if $content = $card.find('.content').first()
+			$content.addClass('front').addClass('show')
+		$('nav a').each () ->
+			if this.href.indexOf(siteUrl) == -1
+				$(this).addClass('external').attr('target', '_blank')
 
-	$(window).resize () ->
-		$content = $card.find('.content.new')
-		if $content.length
-			$card.css
-				height: $content.innerHeight()
+
+	setupCard = () ->
+		$content = $card.find('.content').first()
+		if form = $content.find('form')
+			setupForm(form)
+		$content.find('a').each () ->
+			if this.href.indexOf(siteUrl) == -1
+				$(this).addClass('external').attr('target', '_blank')
 
 	$body.on 'click', 'nav a', (e) ->
 		$link = $(this)
@@ -30,15 +36,13 @@ $ () ->
 		$('nav .opened').removeClass('opened')
 		$link.addClass('opened')
 
-		
-
 		$oldContent = $card.find('.content.show')
 		oldId = $oldContent.attr('id')
 
 		if $link.is('.loaded')
 			id = $link.attr('data-id')
 			$newContent = $card.find('.content#'+id)
-			flipTo($newContent, $oldContent)
+			showContent($newContent)
 		else
 			$.ajax
 				type: 'POST',
@@ -53,31 +57,17 @@ $ () ->
 						$newContent = $content
 						$card.prepend($newContent)
 					if oldId != id
-						flipTo($newContent, $oldContent)
-					if form = $newContent.find('form')
-						setupForm(form)
+						showContent($newContent)
 					$link.attr('data-id', id).addClass('loaded')
+					setupCard()
 
 					
-	flipTo = ($newContent, $oldContent) ->
-		if $card.is('.flipped')
-			oldClass = 'back'
-			newClass = 'front'
-		else
-			oldClass = 'front'
-			newClass = 'back'
+	showContent = ($newContent) ->
+		$card.find('.content').not($newContent).removeClass('show')
+		$newContent.addClass('show')
+		$card.addClass('show')
 
-		$card.find('.content').not($oldContent).not($newContent).removeClass('front back show')
-		$oldContent.removeClass(newClass).addClass(oldClass).removeClass('show')
-		$newContent.removeClass(oldClass).addClass(newClass).addClass('show')
-
-		if $card.is('.show')
-			$card.toggleClass('flipped')
-
-		$card.addClass('show').css
-			height: $newContent.innerHeight()
-
-	$body.on 'click', '#card .close', () ->
+	$body.on 'click touchstart', '#card .close', () ->
 		if $card.is('.show')
 			$('nav .opened').removeClass('opened')
 			$card.attr('class', '')
@@ -100,10 +90,7 @@ $ () ->
 				error: (jqXHR, textStatus, errorThrown) ->
 					console.log jqXHR
 					console.log textStatus, errorThrown
-					console.log data
-					console.log scriptUrl
 				success: (data, textStatus, jqXHR) ->
-					console.log data
 					$form.addClass('submitted')
 
 	$body.on 'focus', 'input, textarea', (e) ->
@@ -115,7 +102,7 @@ $ () ->
 		$field.removeClass('focus')
 
 
-	$body.on 'click touchend', '.field.select, .field.date', (e) ->
+	$body.on 'click', '.field.select, .field.date', (e) ->
 		$field = $(this)
 		$inner = $field.find('.inner')
 		if !$(e.target).is('.option, .ui-datepicker-header *')
@@ -131,7 +118,7 @@ $ () ->
 				$inner.attr('style','')
 
 
-	$body.on 'click touchend', '.select .dropdown .option', (e) ->
+	$body.on 'click', '.select .dropdown .option', (e) ->
 		$field = $(this).parents('.select')
 		$options = $field.find('.options')
 		$dropdown = $options.parents('.dropdown')
@@ -166,10 +153,8 @@ $ () ->
 
 		$('.field.date').each () ->
 			$dateField = $(this)
-			$dateField.find('.ui-datepicker').addClass('content')
+			$dateField.find('.ui-datepicker').addClass('options')
 
-	if form = $card.find('form')
-		setupForm(form)
 
 	validateForm = (form) ->
 		valid = true
@@ -180,13 +165,15 @@ $ () ->
 		$errors = $('.errors')
 		$fields.each (i, field) ->
 			$field = $(field)
-			$input = $field.find('input, select')
+			$input = $field.find('input, select, textarea')
 			value = $input.val()
 			if $field.is('.email') && !validateEmail(value)
 				errors.push('invalidEmail')
 			if $field.is('.required') && (!value || !value.length)
 				$field.addClass('error')
 				errors.push('requiredField')
+			else
+				$field.removeClass('error')
 			if $field.is('.verify')
 				$primary_field = $field.prev()
 				$primary_input = $primary_field.find('input')
@@ -195,6 +182,8 @@ $ () ->
 					$primary_field.addClass('error')
 					$field.addClass('error')
 					errors.push('unverifiedEmail')
+				else
+					$field.removeClass('error')
 			return true
 
 		$('.errors .error').each (i, error) ->
@@ -230,3 +219,5 @@ $ () ->
 			else
 				o[this.name] = this.value || ''
 		return o
+
+	setupPage()

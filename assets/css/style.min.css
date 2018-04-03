@@ -1,8 +1,7 @@
 @font-face {
   font-family: 'Maison Neue';
   src: url("./../fonts/MaisonNeue-NJ-Demi.woff") format("woff");
-  font-weight: 500;
-  -webkit-font-smoothing: antialiased; }
+  font-weight: 500; }
 
 @font-face {
   font-family: 'Maison Neue';
@@ -12,12 +11,15 @@
 html, body {
   width: 100%;
   height: 100%;
-  background: #c7c7c7;
+  background: lightgrey;
   margin: 0;
   font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 25px; }
+  font-size: 17px;
+  line-height: 22px;
+  -webkit-font-smoothing: antialiased; }
+  html *, body * {
+    -webkit-font-smoothing: antialiased; }
 
 ::-webkit-scrollbar {
   width: 0px;
@@ -29,8 +31,16 @@ h1 {
   margin: 0 0 10px 0;
   text-transform: uppercase;
   font-weight: 500;
-  letter-spacing: 1px;
-  -webkit-font-smoothing: antialiased; }
+  letter-spacing: 1px; }
+
+h2 {
+  font-size: 8.5px;
+  line-height: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px; }
+  h2 a {
+    color: inherit !important; }
 
 main {
   height: 100%;
@@ -39,45 +49,21 @@ main {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   pointer-events: none;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  position: relative;
-  perspective: 1000px;
-  z-index: 10000; }
-
-p {
-  margin: 0 0 15px 0; }
-  p:last-of-type {
-    margin: 0; }
-
-a {
-  color: black;
-  text-decoration: none;
-  display: inline;
-  text-shadow: 1px 1px #c7c7c7, -1px 1px #c7c7c7, -1px -1px #c7c7c7, 1px -1px #c7c7c7;
-  background-image: -webkit-linear-gradient(left, black 100%, transparent 100%);
-  background-image: -o-linear-gradient(left, black 100%, transparent 100%);
-  background-image: linear-gradient(90deg, black 100%, transparent 100%);
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: 100% 1px; }
-  a.external {
-    cursor: alias; }
+  perspective: 1000px; }
 
 nav {
-  width: calc(100% - 170px);
-  max-height: calc(100% - 30px);
+  width: 300px;
+  height: calc(100% - 40px);
   position: fixed;
   left: 0;
   top: 0;
-  padding: 30px 85px;
+  padding: 20px;
   overflow: auto;
   -webkit-overflow-scrolling: touch; }
-  nav .logo img {
-    width: 100px;
-    height: auto; }
+  nav a {
+    color: black; }
+    nav a.external {
+      cursor: alias; }
   nav.fixed {
     position: fixed;
     left: 0;
@@ -85,95 +71,86 @@ nav {
 
 #card {
   width: 725px;
-  margin: 65px auto 65px -9999999999px;
+  min-height: calc(100vh - 40px);
+  margin: 40px auto 0 -9999999999px;
   background: #fffdf6;
-  color: #d5404a;
+  color: #ce4049;
+  box-shadow: -2px 4px 40px -9px #8c8c8c;
   position: relative;
-  -webkit-transition: height 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
-  transition: height 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
-  -o-transition: transform 500ms ease-in-out, height 500ms ease-in-out;
-  transition: transform 500ms ease-in-out, height 500ms ease-in-out;
-  transition: transform 500ms ease-in-out, height 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  transition: transform 1s ease-in-out, height 500ms ease-in-out;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
   pointer-events: all;
   z-index: 100; }
-  #card header {
-    padding: 0 0 24px 4px;
-    font-size: 9px;
-    line-height: 11px;
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: .5px;
-    -webkit-font-smoothing: antialiased; }
-    #card header h1 {
-      font-weight: 500;
-      -webkit-font-smoothing: antialiased; }
-    #card header p {
-      margin: 0; }
-    #card header a {
-      color: inherit !important; }
   #card .content {
-    width: calc(100% - 30px);
-    height: auto;
-    padding: 15px 15px 45px 15px;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    padding: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
     display: none;
     background: #fffdf6;
-    overflow: auto; }
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+    overflow: hidden; }
+    #card .content * {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden; }
     #card .content a {
-      color: #d5404a;
-      text-decoration: none;
-      border-color: #d5404a;
-      text-shadow: 1px 1px #fffdf6, -1px 1px #fffdf6, -1px -1px #fffdf6, 1px -1px #fffdf6; }
+      color: #ce4049;
+      text-decoration: none; }
     #card .content .close {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       position: absolute;
       right: 10px;
       top: 10px;
-      background-image: url(../images/close-red.png);
-      background-position: center;
+      background-image: url(../images/close.png);
+      background-position: top center;
       background-repeat: no-repeat;
-      background-size: 12px;
-      z-index: 9999; }
+      background-size: cover; }
       #card .content .close:hover {
         cursor: pointer; }
-    #card .content.show {
+    #card .content.front, #card .content.back {
       display: block; }
-    #card .content#posters, #card .content#discography {
+    #card .content.back {
+      transform: translate3d(0, 0, 0) rotateY(180deg); }
+    #card .content.show {
+      height: auto;
+      min-height: calc(100vh - 100px);
+      pointer-events: all; }
+    #card .content#posters {
       background-color: black;
-      color: #fffdf6;
-      padding-bottom: 5px; }
-      #card .content#posters *, #card .content#discography * {
-        color: #fffdf6; }
-      #card .content#posters a, #card .content#discography a {
-        color: #fffdf6;
-        text-shadow: 1px 1px black, -1px 1px black, -1px -1px black, 1px -1px black;
-        background-image: -webkit-linear-gradient(left, #fffdf6 100%, transparent 100%);
-        background-image: -o-linear-gradient(left, #fffdf6 100%, transparent 100%);
-        background-image: linear-gradient(90deg, #fffdf6 100%, transparent 100%); }
-      #card .content#posters svg, #card .content#discography svg {
-        fill: #fffdf6; }
-      #card .content#posters .close, #card .content#discography .close {
-        background-image: url(../images/close-white.png); }
+      color: #fffdf6; }
+      #card .content#posters .close {
+        background-position: top center; }
+  #card.flipped {
+    transform: translate3d(0, 0, 0) rotateY(180deg); }
   #card.show {
     margin-left: calc(50% - 362.5px); }
-  #card .rows .row {
+  #card .concerts .concert {
     width: calc(100% - 10px);
-    border: solid #d5404a;
+    border: solid #ce4049;
     border-width: 1px 1px 0 1px;
     padding: 4px; }
-    #card .rows .row:last-of-type {
-      border-bottom-width: 1px; }
-    #card .rows .row .title {
+    #card .concerts .concert .date {
       text-transform: uppercase; }
+    #card .concerts .concert:last-of-type {
+      border-bottom-width: 1px; }
   #card .figures {
-    padding: 0 5px;
-    display: -webkit-box;
     display: flex;
-    -webkit-box-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
     flex-wrap: wrap; }
     #card .figures figure {
-      width: calc(50% - 25px);
+      width: calc(50% - 15px);
       height: auto;
       margin: 0 0 40px 0; }
       #card .figures figure img {
@@ -182,27 +159,21 @@ nav {
         text-transform: uppercase;
         font-size: 10px;
         line-height: 12px;
-        text-align: center;
-        font-weight: 500;
-        -webkit-font-smoothing: antialiased;
-        padding: 30px 0 0 0; }
-    #card .figures.discography {
-      padding-top: 15px; }
-      #card .figures.discography figure ul {
+        text-align: center; }
+      #card .figures figure ul {
         padding: 0;
         margin: 0;
         list-style: none; }
-        #card .figures.discography figure ul li {
-          margin: 0; }
-          #card .figures.discography figure ul li.album_title {
-            margin: 0 0 20px 0; }
-          #card .figures.discography figure ul li a {
-            border: none; }
+        #card .figures figure ul li {
+          margin: 5px 0 0 0; }
+          #card .figures figure ul li.album_title {
+            margin-bottom: 20px;
+            text-transform: uppercase; }
   #card form {
     width: 100%; }
     #card form .field {
       width: calc(100% - 2px);
-      border: solid #d5404a;
+      border: solid #ce4049;
       border-width: 1px 1px 0 1px;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -217,19 +188,18 @@ nav {
     #card form label {
       padding: 4px 0 0 4px;
       font-size: 12px;
-      color: #d5404a;
+      color: #ce4049;
       text-transform: uppercase;
       letter-spacing: 1px;
       pointer-events: none; }
     #card form input, #card form textarea, #card form select {
       font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      -webkit-appearance: none; }
+      font-weight: 400; }
       #card form input:-webkit-autofill, #card form textarea:-webkit-autofill, #card form select:-webkit-autofill {
         background-color: transparent !important; }
     #card form input, #card form textarea {
       margin: 0;
-      font-size: 12px;
+      font-size: 18px;
       background: none;
       border: none; }
       #card form input:focus, #card form textarea:focus {
@@ -273,13 +243,11 @@ nav {
         #card form .field.select .dropdown .inner, #card form .field.date .dropdown .inner {
           width: 100%;
           height: 0;
-          background-color: #d5404a;
+          background-color: #ce4049;
           color: #fffdf6;
           display: block;
           z-index: 100;
           overflow: hidden;
-          -webkit-transition: height 100ms ease-in-out;
-          -o-transition: height 100ms ease-in-out;
           transition: height 100ms ease-in-out; }
       #card form .field.select.opened, #card form .field.date.opened {
         background-image: url(../images/arrow-right.png);
@@ -287,8 +255,7 @@ nav {
     #card form .field.select .dropdown .option {
       width: calc(100% - 10px);
       font-size: 12px;
-      padding: 0 5px;
-      text-transform: capitalize; }
+      padding: 0 5px; }
       #card form .field.select .dropdown .option.selected, #card form .field.select .dropdown .option:hover {
         color: black; }
       #card form .field.select .dropdown .option:first-child {
@@ -306,22 +273,16 @@ nav {
         color: #fffdf6;
         text-decoration: none; }
       #card form .field.date .ui-datepicker-header {
-        display: -webkit-box;
         display: flex;
         margin-left: 5px; }
         #card form .field.date .ui-datepicker-header .ui-datepicker-title {
-          -webkit-box-ordinal-group: 2;
-                  order: 1;
-          margin-right: 10px; }
+          order: 1;
+          margin-right: .5em; }
         #card form .field.date .ui-datepicker-header .ui-datepicker-prev {
-          -webkit-box-ordinal-group: 3;
-                  order: 2;
-          margin-right: 10px; }
+          order: 2;
+          margin-right: .5em; }
         #card form .field.date .ui-datepicker-header .ui-datepicker-next {
-          -webkit-box-ordinal-group: 4;
-                  order: 3; }
-      #card form .field.date .ui-datepicker-calendar td {
-        padding: 2px 3px; }
+          order: 3; }
       #card form .field.date table {
         clear: both;
         margin-left: 5px; }
@@ -331,15 +292,14 @@ nav {
       display: none; }
     #card form input[type=submit] {
       color: #fffdf6;
-      background: #d5404a;
+      background: #ce4049;
       height: 35px;
       width: 100%;
       margin-top: 20px;
       border: none;
-      border-radius: 0; }
+      text-transform: uppercase; }
       #card form input[type=submit]:hover {
-        cursor: pointer;
-        background: #ce4049; }
+        cursor: pointer; }
     #card form ul.errors {
       text-transform: uppercase;
       margin: 0;
@@ -367,46 +327,28 @@ nav {
       display: block; }
 
 @media all and (max-width: 736px) {
-  main {
-    width: 80%; }
-    main #card {
-      width: 100%; }
-      main #card.show {
-        margin-right: auto !important;
-        margin-left: auto !important; } }
+  #card {
+    width: 80%;
+    left: 10%; } }
+
+@media all and (max-width: 600px) {
+  #card {
+    width: 90%;
+    left: 5%; } }
 
 @media all and (max-width: 480px) {
   main {
-    overflow: hidden;
-    width: 100%; }
-    main #card {
-      width: 100%;
-      height: 100% !important;
-      min-height: auto;
-      left: 0;
-      top: 0;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch; }
-      main #card .content header h1 {
-        width: calc(100% - 25px); }
-      main #card .content .close {
-        top: 13px; }
-      main #card .content .figures figure {
-        width: 100%; }
-      main #card .content .figures.discography ul, main #card .content .figures.discography img {
-        width: 100%;
-        margin: 0; }
-      main #card .content.show {
-        display: block; }
-      main #card .content form select, main #card .content form textarea, main #card .content form input {
-        font-size: 16px !important; }
-      main #card .content #player .icon {
-        width: 2em;
-        height: 2em; }
-      main #card.show {
-        margin: 0 !important; }
-  nav {
+    overflow: hidden; }
+  #card {
+    width: 100%;
+    height: 100%;
+    min-height: auto;
+    margin: 0;
+    left: 0;
     top: 0;
-    bottom: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; }
+  nav {
+    width: calc(100% - 40px);
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; } }

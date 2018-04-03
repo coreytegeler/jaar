@@ -4,9 +4,11 @@ $slug = $page->slug();
 $googleScript = $site->googleScript();
 echo '<div class="content" id="' . $page->slug() . '">';
 	echo '<div class="close"></div>';
-	echo '<h1>' . $page->title() . '</h1>';
+	echo '<header>';
+		echo '<h1>' . $page->title() . '</h1>';
+		echo '<div class="subtitle">' . $page->subtitle()->kirbytext() . '</div>';
+	echo '</header>';
 		echo '<form id="' . $slug . '_form" autocomplete="off" novalidate data-script="' . $googleScript . '">';
-			echo '<h2>' . $page->subtitle()->kirbytext() . '</h2>';
 			echo '<div class="field hidden">';
 				echo '<input type="text" name="googleSheetId" value="' . $page->googleSheetId() . '">';
 			echo '</div>';
@@ -25,14 +27,14 @@ echo '<div class="content" id="' . $page->slug() . '">';
 				echo '<div class="field ' . $classes . '">';
 					echo '<label for="' . $id . '">' . $label . '</label>';
 					if( $type == 'text' ) {
-						echo '<input type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '" autocomplete="off">';
+						echo '<input type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . ' autocomplete="off">';
 					} else if( $type == 'textarea' ) {
-						echo '<textarea name="' . $sheet_label . '" id="' . $id . '"' . $required . '" rows="4"></textarea>';
+						echo '<textarea name="' . $sheet_label . '" id="' . $id . '"' . $required . ' rows="4"></textarea>';
 					} else if( $type == 'email' ) {
 						echo '<input type="email" name="' . $label . '"' . $required . ' autocomplete="off">';
 					} else if( $type == 'select' ) {
 
-						echo '<select type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '">';
+						echo '<select type="text" name="' . $sheet_label . '" id="' . $id . '"' . $required . '>';
 							echo '<option value=""></option>';
 							foreach( $options as $index => $option ) {
 								echo '<option value="' . $option . '">' . $option . '</option>';
@@ -74,8 +76,8 @@ echo '<div class="content" id="' . $page->slug() . '">';
 				echo '<li class="error" id="unverifiedEmail">PLEASE VERIFY EMAIL ADDRESS.</li>';
 				echo '<li class="error" id="requiredField">ALL REQUIRED FIELDS ARE NOT FILLED IN.</li>';
 			echo '</ul>';
-			echo '<input type="submit" id="submit_' . $slug . '_form"/>';
-			echo '<div class="thankyou">Thank you.</div>';
+			echo '<div class="thankyou">Thank you for submitting this '.$page->title().'.</div>';
+			echo '<input type="submit" id="submit_' . $slug . '_form" value="Submit"/>';
 		echo '</form>';
 	echo '</div>';
 echo '</div>';

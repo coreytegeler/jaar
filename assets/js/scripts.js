@@ -1,23 +1,32 @@
 $(function() {
-  var $body, $card, flipTo, form, setupForm, siteUrl, validateEmail, validateForm;
+  var $body, $card, setupCard, setupForm, setupPage, showContent, siteUrl, validateEmail, validateForm;
   $body = $('body');
   $card = $('#card');
   siteUrl = $body.attr('data-site-url');
-  $card.find('.content').first().addClass('front').addClass('show');
-  $('nav a').each(function() {
-    if (this.href.indexOf(siteUrl) === -1) {
-      return $(this).addClass('external').attr('target', '_blank');
-    }
-  });
-  $(window).resize(function() {
+  setupPage = function() {
     var $content;
-    $content = $card.find('.content.new');
-    if ($content.length) {
-      return $card.css({
-        height: $content.innerHeight()
-      });
+    setupCard();
+    if ($content = $card.find('.content').first()) {
+      $content.addClass('front').addClass('show');
     }
-  });
+    return $('nav a').each(function() {
+      if (this.href.indexOf(siteUrl) === -1) {
+        return $(this).addClass('external').attr('target', '_blank');
+      }
+    });
+  };
+  setupCard = function() {
+    var $content, form;
+    $content = $card.find('.content').first();
+    if (form = $content.find('form')) {
+      setupForm(form);
+    }
+    return $content.find('a').each(function() {
+      if (this.href.indexOf(siteUrl) === -1) {
+        return $(this).addClass('external').attr('target', '_blank');
+      }
+    });
+  };
   $body.on('click', 'nav a', function(e) {
     var $link, $newContent, $oldContent, href, id, oldId;
     $link = $(this);
@@ -38,7 +47,7 @@ $(function() {
     if ($link.is('.loaded')) {
       id = $link.attr('data-id');
       $newContent = $card.find('.content#' + id);
-      return flipTo($newContent, $oldContent);
+      return showContent($newContent);
     } else {
       return $.ajax({
         type: 'POST',
@@ -47,7 +56,7 @@ $(function() {
         },
         url: href,
         success: function(content, textStatus, jqXHR) {
-          var $content, form;
+          var $content;
           $content = $(content).clone();
           id = $content.attr('id');
           $newContent = $card.find('#' + id);
@@ -56,36 +65,20 @@ $(function() {
             $card.prepend($newContent);
           }
           if (oldId !== id) {
-            flipTo($newContent, $oldContent);
+            showContent($newContent);
           }
-          if (form = $newContent.find('form')) {
-            setupForm(form);
-          }
-          return $link.attr('data-id', id).addClass('loaded');
+          $link.attr('data-id', id).addClass('loaded');
+          return setupCard();
         }
       });
     }
   });
-  flipTo = function($newContent, $oldContent) {
-    var newClass, oldClass;
-    if ($card.is('.flipped')) {
-      oldClass = 'back';
-      newClass = 'front';
-    } else {
-      oldClass = 'front';
-      newClass = 'back';
-    }
-    $card.find('.content').not($oldContent).not($newContent).removeClass('front back show');
-    $oldContent.removeClass(newClass).addClass(oldClass).removeClass('show');
-    $newContent.removeClass(oldClass).addClass(newClass).addClass('show');
-    if ($card.is('.show')) {
-      $card.toggleClass('flipped');
-    }
-    return $card.addClass('show').css({
-      height: $newContent.innerHeight()
-    });
+  showContent = function($newContent) {
+    $card.find('.content').not($newContent).removeClass('show');
+    $newContent.addClass('show');
+    return $card.addClass('show');
   };
-  $body.on('click', '#card .close', function() {
+  $body.on('click touchstart', '#card .close', function() {
     if ($card.is('.show')) {
       $('nav .opened').removeClass('opened');
       $card.attr('class', '');
@@ -110,12 +103,9 @@ $(function() {
         data: data,
         error: function(jqXHR, textStatus, errorThrown) {
           console.log(jqXHR);
-          console.log(textStatus, errorThrown);
-          console.log(data);
-          return console.log(scriptUrl);
+          return console.log(textStatus, errorThrown);
         },
         success: function(data, textStatus, jqXHR) {
-          console.log(data);
           return $form.addClass('submitted');
         }
       });
@@ -131,7 +121,7 @@ $(function() {
     $field = $(this).parents('.field');
     return $field.removeClass('focus');
   });
-  $body.on('click touchend', '.field.select, .field.date', function(e) {
+  $body.on('click', '.field.select, .field.date', function(e) {
     var $field, $inner, $opened, innerHeight;
     $field = $(this);
     $inner = $field.find('.inner');
@@ -151,7 +141,7 @@ $(function() {
       }
     }
   });
-  $body.on('click touchend', '.select .dropdown .option', function(e) {
+  $body.on('click', '.select .dropdown .option', function(e) {
     var $dropdown, $field, $option, $options, $select, value;
     $field = $(this).parents('.select');
     $options = $field.find('.options');
@@ -191,12 +181,9 @@ $(function() {
     return $('.field.date').each(function() {
       var $dateField;
       $dateField = $(this);
-      return $dateField.find('.ui-datepicker').addClass('content');
+      return $dateField.find('.ui-datepicker').addClass('options');
     });
   };
-  if (form = $card.find('form')) {
-    setupForm(form);
-  }
   validateForm = function(form) {
     var $errors, $fields, $form, data, errors, valid;
     valid = true;
@@ -208,7 +195,7 @@ $(function() {
     $fields.each(function(i, field) {
       var $field, $input, $primary_field, $primary_input, primary_value, value;
       $field = $(field);
-      $input = $field.find('input, select');
+      $input = $field.find('input, select, textarea');
       value = $input.val();
       if ($field.is('.email') && !validateEmail(value)) {
         errors.push('invalidEmail');
@@ -216,6 +203,8 @@ $(function() {
       if ($field.is('.required') && (!value || !value.length)) {
         $field.addClass('error');
         errors.push('requiredField');
+      } else {
+        $field.removeClass('error');
       }
       if ($field.is('.verify')) {
         $primary_field = $field.prev();
@@ -225,6 +214,8 @@ $(function() {
           $primary_field.addClass('error');
           $field.addClass('error');
           errors.push('unverifiedEmail');
+        } else {
+          $field.removeClass('error');
         }
       }
       return true;
@@ -253,7 +244,7 @@ $(function() {
     re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
-  return $.fn.serializeObject = function() {
+  $.fn.serializeObject = function() {
     var a, o;
     o = {};
     a = this.serializeArray();
@@ -269,4 +260,5 @@ $(function() {
     });
     return o;
   };
+  return setupPage();
 });

@@ -1,8 +1,9 @@
 title: Site
 
 pages:
-  -page
-  -form
+  - page
+  - form
+  - news
 
 fields:
   title:

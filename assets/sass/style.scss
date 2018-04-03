@@ -2,6 +2,7 @@
 	font-family: 'Maison Neue';
 	src: url('./../fonts/MaisonNeue-NJ-Demi.woff') format('woff');
 	font-weight: 500;
+	-webkit-font-smoothing: antialiased;
 }
 @font-face {
 	font-family: 'Maison Neue';
@@ -9,9 +10,9 @@
 	font-weight: 400;
 }
 
-$lightest: lightgrey;
+$lightest:  #c7c7c7;
 $light: #fffdf6;
-$red: #ce4049;
+$red: #d5404a;
 $pink: #ffaa9b;
 $card: 725px;
 html, body {
@@ -21,12 +22,8 @@ html, body {
 	margin: 0;
 	font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
 	font-weight: 400;
-	font-size: 17px;
-  line-height: 22px;
-	-webkit-font-smoothing: antialiased;
-	* {
-		-webkit-font-smoothing: antialiased;
-	}
+	font-size: 16px;
+  line-height: 25px;
 }
 ::-webkit-scrollbar {
 	width: 0px;
@@ -39,38 +36,53 @@ h1 {
 	text-transform: uppercase;
 	font-weight: 500;
 	letter-spacing: 1px;
-}
-h2 {
-	font-size: 8.5px;
-	line-height: 10px;
-	text-transform: uppercase;
-	font-weight: 500;
-	letter-spacing: 1px;
-	a {
-		color: inherit !important;
-	}
+	-webkit-font-smoothing: antialiased;
 }
 main {
-	width: 100%;
 	height: 100%;
-	display: block;
+	display: table;
+	margin: auto; 
+	overflow-y: scroll; 
+	-webkit-overflow-scrolling: touch;
+	pointer-events: none;
+	perspective: 1000px;
+	transform-style: preserve-3d;
+	position: relative;
+	perspective: 1000px;
+	z-index: 10000;
+}
+p {
+	margin: 0 0 15px 0;
+	&:last-of-type {
+		margin: 0;
+	}
+}
+a {
+	color: black;
+  text-decoration: none;
+  display: inline;
+  text-shadow: 1px 1px $lightest, -1px 1px $lightest, -1px -1px $lightest, 1px -1px $lightest;
+  background-image: linear-gradient(90deg, black 100%, transparent 100%);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+	&.external {
+		cursor: alias;
+	}
+}
+nav {
+	width: calc(100% - 170px);
+	max-height: calc(100% - 30px);
 	position: fixed;
 	left: 0;
 	top: 0;
-	overflow-y: scroll; 
-	-webkit-overflow-scrolling: touch;
-	perspective: 1000px;
-}
-nav {
-	width: 300px;
-	height: calc(100% - 40px);
-	padding: 20px;
+	padding: 30px 85px;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
-	a {
-		color: black;
-		&.external {
-			cursor: alias;
+	.logo {
+		img {
+			width: 100px;
+			height: auto;
 		}
 	}
 	&.fixed {
@@ -81,102 +93,110 @@ nav {
 }
 #card {
 	width: $card;
-	min-height: calc(100vh - 40px);
-	margin: 0 auto 0 -9999999999px;
+	margin: 65px auto 65px -9999999999px;
 	background: $light;
 	color: $red;
-	box-shadow: -2px 4px 40px -9px rgb(140,140,140);
+	position: relative;
+	transition: transform 500ms ease-in-out, height 500ms ease-in-out;
 	pointer-events: all;
-	position: absolute;
-	left: calc(50% - #{$card/2});
-	top: 40px;
-	transition: transform 1s ease-in-out, height 500ms ease-in-out;
-	transform-style: preserve-3d;
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
 	z-index: 100;
+	header {
+		padding: 0 0 24px 4px;
+		font-size: 9px;
+		line-height: 11px;
+		text-transform: uppercase;
+		font-weight: 500;
+		letter-spacing: .5px;
+		-webkit-font-smoothing: antialiased;
+		h1 {
+			font-weight: 500;
+			-webkit-font-smoothing: antialiased;
+		}
+		p {
+			margin: 0;
+		}
+		a {
+			color: inherit !important;
+		}
+	}
 	.content {
-		width: calc(100% - 60px);
-		height: calc(100% - 60px);
-		padding: 30px;
-		position: absolute;
-		left: 0;
-		top: 0;
+		width: calc(100% - 30px);
+		height: auto;
+		padding: 15px 15px 45px 15px;
 		display: none;
 		background: $light;
-		backface-visibility: hidden;
-		-webkit-backface-visibility: hidden;
-		transform-style: preserve-3d;
-		overflow: hidden;
-		* {
-			backface-visibility: hidden;
-			-webkit-backface-visibility: hidden;
-		}
+		overflow: auto;
 		a {
 			color: $red;
 			text-decoration: none;
+			border-color: $red;
+		  text-shadow: 1px 1px $light, -1px 1px $light, -1px -1px $light, 1px -1px $light;
 		}
 		.close {
-			width: 20px;
-			height: 20px;
+			width: 30px;
+			height: 30px;
 			position: absolute;
 			right: 10px;
 			top: 10px;
-			background-image: url(images/close.png);
-			background-position: top center;
-			background-repeat: no-repeat;
-	    background-size: cover;
+			background-image: url(images/close-red.png);
+			background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: 12px;
+	    z-index: 9999;
 	    &:hover {
 	    	cursor: pointer;
 	    }
 		}
-		&.front, &.back {
+		&.show {
 			display: block;
 		}
-		&.back {
-			transform: translate3d(0,0,0) rotateY(180deg);	
-			backface-visibility: visible;
-			-webkit-backface-visibility: visible;
-		}
-		&.show {
-			height: auto;
-			min-height: calc(100vh - 100px);
-			z-index: 100;
-		}
-		&#posters {
+		&#posters, &#discography {
 			background-color: black;
 			color: $light;
+			padding-bottom: 5px;
+			* {
+				color: $light;
+			}
+			a {
+				color: $light;
+				text-shadow: 1px 1px black, -1px 1px black, -1px -1px black, 1px -1px black;
+			  background-image: linear-gradient(90deg, $light 100%, transparent 100%);
+			}
+			svg {
+				fill: $light;
+			}
 			.close {
-				background-position: top center;
+				background-image: url(images/close-white.png);
 			}
 		}
-	}
-	&.flipped {
-		transform: translate3d(0,0,0) rotateY(180deg);
+		&#colophon {
+
+		}
 	}
 	&.show {
-		margin-left: auto;
+		margin-left: calc(50% - #{$card/2});
 	}
-	.concerts {
-		.concert {
+	.rows {
+		.row {
 			width: calc(100% - 10px);
 			border: solid $red;
 			border-width: 1px 1px 0 1px;
 			padding: 4px;
-			.date {
-				text-transform: uppercase;
-			}
 			&:last-of-type {
 				border-bottom-width: 1px;
+			}
+			.title {
+				text-transform: uppercase;
 			}
 		}
 	}
 	.figures {
+		padding: 0 5px;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
 		figure {
-			width: calc(50% - 15px);
+			width: calc(50% - 25px);
 			height: auto;
 			margin: 0 0 40px 0;
 			img {
@@ -187,16 +207,26 @@ nav {
 				font-size: 10px;
 				line-height: 12px;
 				text-align: center;
+		    font-weight: 500;
+		    -webkit-font-smoothing: antialiased;
+		    padding: 30px 0 0 0;
 			}
-			ul {
-				padding: 0;
-				margin: 0;
-				list-style: none;
-				li {
-					margin: 5px 0 0 0;
-					&.album_title {
-						margin-bottom: 20px;
-						text-transform: uppercase;
+		}
+		&.discography {
+			padding-top: 15px;
+			figure {
+				ul {
+					padding: 0;
+					margin: 0;
+					list-style: none;
+					li {
+						margin: 0;
+						&.album_title {
+							margin: 0 0 20px 0;
+						}
+						a {
+							border: none;
+						}
 					}
 				}
 			}
@@ -233,13 +263,14 @@ nav {
 		input, textarea, select {
 			font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
 			font-weight: 400;
+			-webkit-appearance: none;
 			&:-webkit-autofill {
 				background-color: transparent !important;
 			}
 		}
 		input, textarea {
 			margin: 0;
-			font-size: 18px;
+			font-size: 12px;
 			background: none;
 			border: none;
 			&:focus {
@@ -312,6 +343,7 @@ nav {
 				width: calc(100% - 10px);
 				font-size: 12px;
 				padding: 0 5px;
+				text-transform: capitalize;
 				&.selected, &:hover {
 					color: black;
 				}
@@ -340,14 +372,18 @@ nav {
 				margin-left: 5px;
 				.ui-datepicker-title {
 					order: 1;
-					margin-right: .5em;
+					margin-right: 10px;
 				}
 				.ui-datepicker-prev {
 					order: 2;
-					margin-right: .5em;
+					margin-right: 10px;
 				}
 				.ui-datepicker-next {
 					order: 3;
+				}
+			}.ui-datepicker-calendar {
+				td {
+					padding: 2px 3px;
 				}
 			}
 			table {
@@ -368,9 +404,10 @@ nav {
 			width: 100%;
 			margin-top: 20px;
 			border: none;
-			text-transform: uppercase;
+			border-radius: 0;
 			&:hover {
 				cursor: pointer;
+				background: #ce4049;
 			}
 		}
 		ul.errors {
@@ -411,35 +448,70 @@ nav {
 	}
 }
 @media all and (max-width: 736px) {
-	#card {
+	main {
 		width: 80%;
-		left: 10%;
+		#card {
+			width: 100%;
+			&.show {
+				margin-right: auto !important;
+				margin-left: auto !important;
+			}
+		}
 	}
-}
-
-@media all and (max-width: 600px) {
-	#card {
-		width: 90%;
-		left: 5%;
-	}
-}
+	nav {
 		
+	}
+}
+	
 @media all and (max-width: 480px) {
 	main {
 		overflow: hidden;
-	}
-	#card {
 		width: 100%;
-		height: 100%;
-		min-height: auto;
-		margin: 0;
-		left: 0;
-		top: 0;
-		overflow-y: scroll; 
-		-webkit-overflow-scrolling: touch;
+		#card {
+			width: 100%;
+			height: 100% !important;
+			min-height: auto;
+			left: 0;
+			top: 0;
+			overflow-y: scroll; 
+			-webkit-overflow-scrolling: touch;
+			.content {
+				header h1 {
+					width: calc(100% - 25px);
+				}
+				.close {
+					top: 13px;
+				}
+				.figures {
+					figure {
+						width: 100%;
+					}
+					&.discography {
+						ul, img {
+							width: 100%;
+							margin: 0;
+						}
+					}
+				}
+				&.show {
+					display: block;
+				}
+				form select, form textarea, form input {
+			    font-size: 16px !important;
+			  }
+			  #player .icon {
+			  	width: 2em;
+			    height: 2em;
+			  }
+			}
+			&.show {
+				margin: 0 !important;
+			}
+		}
 	}
 	nav {
-		width: calc(100% - 40px);
+		top: 0;
+		bottom: auto;
 		overflow-y: scroll; 
 		-webkit-overflow-scrolling: touch;
 	}

@@ -2,7 +2,6 @@
 	display: table;
 	vertical-align: top;
   color: #d5404a;  
-  margin: auto;
 }
 
 #player .icon {
@@ -43,7 +42,6 @@
 }
 #player a.prev, #player a.next, #player a.sc-play {
 	vertical-align: top;
-	font-size: 14px;
 	margin: 0 2px;
 	transition: color .2s linear
 }
@@ -113,14 +111,8 @@
 
 #player .time {
   padding-top: 0px;
-  font-size: 13px;
-  line-height: 18px;
-	font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
-	font-weight: normal;
-	font-style: normal;
 }
 #player .audiojs {
-  margin-bottom: 20px;
   opacity: .5;
 }
 
@@ -130,14 +122,17 @@
 	padding: 0;
 	-webkit-appearance: none;
 }
+#player .audiojs button:hover, #player .audiojs button:focus {
+	outline: none;
+}
 
 #player .play-pause {
 	display: table;
-	margin: auto;
+	margin: 0;
 }
 #player .time {
 	display: table;
-	margin: auto;
+	margin: 0;
 }
 
 #player .audiojs .play-pause .ghosts {
@@ -163,22 +158,12 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
   color: #d5404a;
-  font-size: 13px;
-  line-height: 18px;
-	font-family: 'Maison Neue Light', Helvetica, Arial, sans-serif;
-	font-weight: normal;
 	font-style: normal; 
-	text-align: center; 
+	text-align: left; 
 }
 #player .audiojs .scrubber {
 	position: relative;
 	height: 7px;
-  width: 300px;
-	display: none
-}
-
-#player .scrubber .progress, #player .scrubber .loaded {
-  display: none;
 }
 
 #player .audiojs .progress {
@@ -187,7 +172,8 @@
 	left: 0;
 	height: 14px;
 	width: 0;
-	z-index: 1
+	z-index: 1;
+	display: none;
 }
 #player .audiojs .progress:after {
 	position: absolute;
@@ -211,7 +197,7 @@
 */
 
 #player .audiojs {
-  height: 50px;   
+ 
 }
 
 #player .audiojs .error-message {
@@ -222,9 +208,6 @@
 }
 #player .audiojs.playing .pause {
 	display: inline-block
-}
-#player .audiojs.playing .scrubber {
-	display: block
 }
 #player .audiojs.has-played {
 	display: block;
