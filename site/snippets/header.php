@@ -28,8 +28,8 @@
 </head>
 <body data-site-url="<?= $site->url() ?>">
 	<nav>
-		<?php echo page( 'home' )->text()->kirbytext();?>
+		<?php echo $site->text()->kirbytext();?>
 	</nav>
   <main class="main" role="main" id="<?= $page->slug() ?>">
-    <div id="card" <?= ($page->slug() != 'home' ? 'class="show"' : '')?>>
+    <div id="card" class="show">
 <?php } ?>

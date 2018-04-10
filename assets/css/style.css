@@ -97,7 +97,7 @@ nav {
   pointer-events: all;
   z-index: 100; }
   #card header {
-    padding: 0 0 24px 4px;
+    padding: 0 0 14px 4px;
     font-size: 9px;
     line-height: 11px;
     text-transform: uppercase;
@@ -114,15 +114,21 @@ nav {
   #card .content {
     width: calc(100% - 30px);
     height: auto;
-    padding: 15px 15px 45px 15px;
+    padding: 15px 15px 50px 15px;
     display: none;
     background: #fffdf6;
     overflow: auto; }
     #card .content a {
       color: #d5404a;
       text-decoration: none;
-      border-color: #d5404a;
-      text-shadow: 1px 1px #fffdf6, -1px 1px #fffdf6, -1px -1px #fffdf6, 1px -1px #fffdf6; }
+      display: inline;
+      text-shadow: 1px 1px #fffdf6, -1px 1px #fffdf6, -1px -1px #fffdf6, 1px -1px #fffdf6;
+      background-image: -webkit-linear-gradient(left, #d5404a 100%, transparent 100%);
+      background-image: -o-linear-gradient(left, #d5404a 100%, transparent 100%);
+      background-image: linear-gradient(90deg, #d5404a 100%, transparent 100%);
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: 100% 1px; }
     #card .content .close {
       width: 30px;
       height: 30px;
@@ -146,14 +152,21 @@ nav {
         color: #fffdf6; }
       #card .content#posters a, #card .content#discography a {
         color: #fffdf6;
+        text-decoration: none;
+        display: inline;
         text-shadow: 1px 1px black, -1px 1px black, -1px -1px black, 1px -1px black;
         background-image: -webkit-linear-gradient(left, #fffdf6 100%, transparent 100%);
         background-image: -o-linear-gradient(left, #fffdf6 100%, transparent 100%);
-        background-image: linear-gradient(90deg, #fffdf6 100%, transparent 100%); }
+        background-image: linear-gradient(90deg, #fffdf6 100%, transparent 100%);
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: 100% 1px; }
       #card .content#posters svg, #card .content#discography svg {
         fill: #fffdf6; }
       #card .content#posters .close, #card .content#discography .close {
         background-image: url(../images/close-white.png); }
+    #card .content:not(.form) header {
+      margin-bottom: 22px; }
   #card.show {
     margin-left: calc(50% - 362.5px); }
   #card .rows .row {
@@ -177,7 +190,9 @@ nav {
       height: auto;
       margin: 0 0 40px 0; }
       #card .figures figure img {
-        width: 100%; }
+        width: 100%;
+        height: auto;
+        display: table; }
       #card .figures figure figcaption {
         text-transform: uppercase;
         font-size: 10px;
@@ -185,7 +200,7 @@ nav {
         text-align: center;
         font-weight: 500;
         -webkit-font-smoothing: antialiased;
-        padding: 30px 0 0 0; }
+        padding: 30px 0; }
     #card .figures.discography {
       padding-top: 15px; }
       #card .figures.discography figure ul {
@@ -197,7 +212,19 @@ nav {
           #card .figures.discography figure ul li.album_title {
             margin: 0 0 20px 0; }
           #card .figures.discography figure ul li a {
-            border: none; }
+            text-shadow: none !important;
+            background: none !important; }
+    #card .figures.posters figure {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-direction: column;
+      -webkit-box-pack: justify;
+              justify-content: space-between; }
+      #card .figures.posters figure .image {
+        width: 100%;
+        display: table; }
   #card form {
     width: 100%; }
     #card form .field {
@@ -215,12 +242,15 @@ nav {
         #card form .field.error input, #card form .field.error textarea, #card form .field.focus input, #card form .field.focus textarea {
           background-color: transparent !important; }
     #card form label {
-      padding: 4px 0 0 4px;
+      padding: 3px 0 0 4px;
+      display: block;
       font-size: 12px;
+      line-height: 14px;
       color: #d5404a;
       text-transform: uppercase;
       letter-spacing: 1px;
-      pointer-events: none; }
+      pointer-events: none;
+      display: block; }
     #card form input, #card form textarea, #card form select {
       font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
       font-weight: 400;
@@ -264,7 +294,7 @@ nav {
         font-size: 12px;
         color: black; }
       #card form .field.select .dropdown, #card form .field.date .dropdown {
-        min-height: 25px;
+        min-height: 27px;
         border: none;
         font-size: 12px;
         -webkit-appearance: none;
@@ -304,7 +334,9 @@ nav {
         display: none; }
       #card form .field.date a {
         color: #fffdf6;
-        text-decoration: none; }
+        text-decoration: none;
+        text-shadow: none !important;
+        background: none !important; }
       #card form .field.date .ui-datepicker-header {
         display: -webkit-box;
         display: flex;
@@ -320,13 +352,19 @@ nav {
         #card form .field.date .ui-datepicker-header .ui-datepicker-next {
           -webkit-box-ordinal-group: 4;
                   order: 3; }
+      #card form .field.date .ui-datepicker-calendar thead th {
+        text-align: left;
+        font-weight: 500;
+        -webkit-font-smoothing: antialiased; }
       #card form .field.date .ui-datepicker-calendar td {
         padding: 2px 3px; }
       #card form .field.date table {
         clear: both;
         margin-left: 5px; }
         #card form .field.date table a {
-          color: #fffdf6 !important; }
+          color: #fffdf6 !important;
+          text-shadow: none !important;
+          background: none !important; }
     #card form .field.hidden {
       display: none; }
     #card form input[type=submit] {
@@ -376,36 +414,48 @@ nav {
         margin-left: auto !important; } }
 
 @media all and (max-width: 480px) {
+  h1 {
+    font-size: 22px;
+    line-height: 22px; }
   main {
     overflow: hidden;
     width: 100%; }
     main #card {
-      width: 100%;
-      height: 100% !important;
+      width: calc(100% - 20px);
+      height: auto !important;
       min-height: auto;
-      left: 0;
+      left: 10px;
       top: 0;
       overflow-y: scroll;
+      background-color: transparent;
       -webkit-overflow-scrolling: touch; }
-      main #card .content header h1 {
-        width: calc(100% - 25px); }
-      main #card .content .close {
-        top: 13px; }
-      main #card .content .figures figure {
-        width: 100%; }
-      main #card .content .figures.discography ul, main #card .content .figures.discography img {
-        width: 100%;
-        margin: 0; }
-      main #card .content.show {
-        display: block; }
-      main #card .content form select, main #card .content form textarea, main #card .content form input {
-        font-size: 16px !important; }
-      main #card .content #player .icon {
-        width: 2em;
-        height: 2em; }
+      main #card .content {
+        width: calc(100% - 20px);
+        padding: 10px 10px 50px 10px; }
+        main #card .content header h1 {
+          width: calc(100% - 25px); }
+        main #card .content .close {
+          top: 3px;
+          right: 3px; }
+        main #card .content .figures figure {
+          width: 100%; }
+        main #card .content .figures.discography ul, main #card .content .figures.discography img {
+          width: 100%;
+          margin: 0; }
+        main #card .content.show {
+          display: block; }
+        main #card .content form select, main #card .content form textarea, main #card .content form input {
+          font-size: 16px !important; }
+        main #card .content #player .icon {
+          width: 2em;
+          height: 2em; }
+        main #card .content #player .play-pause {
+          margin-left: -0.5em; }
       main #card.show {
-        margin: 0 !important; }
+        margin: 10px 0 !important; }
   nav {
+    width: calc(100% - 10px);
+    padding: 0px 5px;
     top: 0;
     bottom: auto;
     overflow-y: scroll;

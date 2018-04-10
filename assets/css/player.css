@@ -129,6 +129,7 @@
 #player .play-pause {
 	display: table;
 	margin: 0;
+	margin-left: -0.25em;
 }
 #player .time {
 	display: table;

@@ -10,11 +10,27 @@
 	font-weight: 400;
 }
 
+@mixin underline($color, $bg) {
+	text-decoration: none;
+	display: inline;
+	text-shadow: 1px 1px $bg, -1px 1px $bg, -1px -1px $bg, 1px -1px $bg;
+	background-image: linear-gradient(90deg, $color 100%, transparent 100%);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: 100% 1px;
+}
+
+@mixin nounderline {
+	text-shadow: none !important;
+	background: none !important;
+}
+
 $lightest:  #c7c7c7;
 $light: #fffdf6;
 $red: #d5404a;
 $pink: #ffaa9b;
 $card: 725px;
+
 html, body {
 	width: 100%;
 	height: 100%;
@@ -23,7 +39,7 @@ html, body {
 	font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
 	font-weight: 400;
 	font-size: 16px;
-  line-height: 25px;
+	line-height: 25px;
 }
 ::-webkit-scrollbar {
 	width: 0px;
@@ -59,13 +75,7 @@ p {
 }
 a {
 	color: black;
-  text-decoration: none;
-  display: inline;
-  text-shadow: 1px 1px $lightest, -1px 1px $lightest, -1px -1px $lightest, 1px -1px $lightest;
-  background-image: linear-gradient(90deg, black 100%, transparent 100%);
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: 100% 1px;
+	@include underline(black, $lightest);
 	&.external {
 		cursor: alias;
 	}
@@ -101,7 +111,7 @@ nav {
 	pointer-events: all;
 	z-index: 100;
 	header {
-		padding: 0 0 24px 4px;
+		padding: 0 0 14px 4px;
 		font-size: 9px;
 		line-height: 11px;
 		text-transform: uppercase;
@@ -122,15 +132,13 @@ nav {
 	.content {
 		width: calc(100% - 30px);
 		height: auto;
-		padding: 15px 15px 45px 15px;
+		padding: 15px 15px 50px 15px;
 		display: none;
 		background: $light;
 		overflow: auto;
 		a {
 			color: $red;
-			text-decoration: none;
-			border-color: $red;
-		  text-shadow: 1px 1px $light, -1px 1px $light, -1px -1px $light, 1px -1px $light;
+			@include underline($red, $light);
 		}
 		.close {
 			width: 30px;
@@ -140,12 +148,12 @@ nav {
 			top: 10px;
 			background-image: url(images/close-red.png);
 			background-position: center;
-	    background-repeat: no-repeat;
-	    background-size: 12px;
-	    z-index: 9999;
-	    &:hover {
-	    	cursor: pointer;
-	    }
+			background-repeat: no-repeat;
+			background-size: 12px;
+			z-index: 9999;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 		&.show {
 			display: block;
@@ -159,8 +167,7 @@ nav {
 			}
 			a {
 				color: $light;
-				text-shadow: 1px 1px black, -1px 1px black, -1px -1px black, 1px -1px black;
-			  background-image: linear-gradient(90deg, $light 100%, transparent 100%);
+				@include underline($light, black);
 			}
 			svg {
 				fill: $light;
@@ -169,8 +176,10 @@ nav {
 				background-image: url(images/close-white.png);
 			}
 		}
-		&#colophon {
-
+		&:not(.form) {
+			header {
+				margin-bottom: 22px;
+			}
 		}
 	}
 	&.show {
@@ -201,15 +210,17 @@ nav {
 			margin: 0 0 40px 0;
 			img {
 				width: 100%;
+				height: auto;
+				display: table;
 			}
 			figcaption {
 				text-transform: uppercase;
 				font-size: 10px;
 				line-height: 12px;
 				text-align: center;
-		    font-weight: 500;
-		    -webkit-font-smoothing: antialiased;
-		    padding: 30px 0 0 0;
+				font-weight: 500;
+				-webkit-font-smoothing: antialiased;
+				padding: 30px 0;
 			}
 		}
 		&.discography {
@@ -225,9 +236,20 @@ nav {
 							margin: 0 0 20px 0;
 						}
 						a {
-							border: none;
+							@include nounderline;
 						}
 					}
+				}
+			}
+		}
+		&.posters {
+			figure {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				.image {
+					width: 100%;
+					display: table;
 				}
 			}
 		}
@@ -253,12 +275,15 @@ nav {
 			}
 		}
 		label {
-			padding: 4px 0 0 4px;
+			padding: 3px 0 0 4px;
+			display: block;
 			font-size: 12px;
+			line-height: 14px;
 			color: $red;
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			pointer-events: none;
+			display: block;
 		}
 		input, textarea, select {
 			font-family: 'Maison Neue', Helvetica, Arial, sans-serif;
@@ -313,7 +338,7 @@ nav {
 				color: black;
 			}
 			.dropdown {
-				min-height: 25px;
+				min-height: 27px;
 				border: none;
 				font-size: 12px;
 				-webkit-appearance: none;
@@ -366,6 +391,7 @@ nav {
 			a {
 				color: $light;
 				text-decoration: none;
+				@include nounderline;
 			}
 			.ui-datepicker-header {
 				display: flex;
@@ -381,7 +407,13 @@ nav {
 				.ui-datepicker-next {
 					order: 3;
 				}
-			}.ui-datepicker-calendar {
+			}
+			.ui-datepicker-calendar {
+				thead th {
+					text-align: left;
+					font-weight: 500;
+					-webkit-font-smoothing: antialiased;
+				}
 				td {
 					padding: 2px 3px;
 				}
@@ -391,6 +423,7 @@ nav {
 				margin-left: 5px;
 				a {
 					color: $light !important;
+					@include nounderline;
 				}
 			}
 		}
@@ -464,23 +497,31 @@ nav {
 }
 	
 @media all and (max-width: 480px) {
+	h1 {
+		font-size: 22px;
+		line-height: 22px;
+	}
 	main {
 		overflow: hidden;
 		width: 100%;
 		#card {
-			width: 100%;
-			height: 100% !important;
+			width: calc(100% - 20px);
+			height: auto !important;
 			min-height: auto;
-			left: 0;
+			left: 10px;
 			top: 0;
 			overflow-y: scroll; 
+			background-color: transparent;
 			-webkit-overflow-scrolling: touch;
 			.content {
+				width: calc(100% - 20px);
+				padding: 10px 10px 50px 10px;
 				header h1 {
 					width: calc(100% - 25px);
 				}
 				.close {
-					top: 13px;
+					top: 3px;
+					right: 3px;
 				}
 				.figures {
 					figure {
@@ -497,19 +538,26 @@ nav {
 					display: block;
 				}
 				form select, form textarea, form input {
-			    font-size: 16px !important;
-			  }
-			  #player .icon {
-			  	width: 2em;
-			    height: 2em;
-			  }
+					font-size: 16px !important;
+				}
+				#player {
+					.icon {
+						width: 2em;
+						height: 2em;
+					}
+					.play-pause {
+						margin-left: -0.5em;
+					}
+				}
 			}
 			&.show {
-				margin: 0 !important;
+				margin: 10px 0 !important;
 			}
 		}
 	}
 	nav {
+    width: calc(100% - 10px);
+    padding: 0px 5px;
 		top: 0;
 		bottom: auto;
 		overflow-y: scroll; 

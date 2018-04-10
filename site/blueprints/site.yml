@@ -1,14 +1,14 @@
 title: Site
 
-pages:
-  - page
-  - form
-  - news
-
 fields:
   title:
     label: Title
     type:  text
+
+  text:
+    label: Text
+    type: wysiwyg
+
   googleScript:
     label: Google Script URL
     type: url

@@ -2,7 +2,7 @@
 snippet('header');
 $slug = $page->slug();
 $googleScript = $site->googleScript();
-echo '<div class="content" id="' . $page->slug() . '">';
+echo '<div class="content form" id="' . $page->slug() . '">';
 	echo '<div class="close"></div>';
 	echo '<header>';
 		echo '<h1>' . $page->title() . '</h1>';

@@ -9,7 +9,7 @@ echo '<div class="content" id="' . $page->slug() . '">';
 		$posters = $page->files()->sortBy('sort', 'asc');
 		foreach ( $posters as $index => $poster ) {
 			echo '<figure class="poster">';
-				echo $poster->resize(900, null, 100);;
+				echo '<div class="image">'.$poster->resize(900, null, 100).'</div>';
 				echo '<figcaption>' . $poster->caption()->kirbytext() . '</figcaption>';
 			echo '</figure>';
 		}

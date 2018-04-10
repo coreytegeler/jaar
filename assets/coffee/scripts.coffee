@@ -67,7 +67,8 @@ $ () ->
 		$newContent.addClass('show')
 		$card.addClass('show')
 
-	$body.on 'click touchstart', '#card .close', () ->
+	$body.on 'click touchstart', '#card .close', (e) ->
+		e.preventDefault()
 		if $card.is('.show')
 			$('nav .opened').removeClass('opened')
 			$card.attr('class', '')

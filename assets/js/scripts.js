@@ -78,7 +78,8 @@ $(function() {
     $newContent.addClass('show');
     return $card.addClass('show');
   };
-  $body.on('click touchstart', '#card .close', function() {
+  $body.on('click touchstart', '#card .close', function(e) {
+    e.preventDefault();
     if ($card.is('.show')) {
       $('nav .opened').removeClass('opened');
       $card.attr('class', '');
