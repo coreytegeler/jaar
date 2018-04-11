@@ -41,10 +41,10 @@ html, body {
 	font-size: 16px;
 	line-height: 25px;
 }
-::-webkit-scrollbar {
-	width: 0px;
-	background: transparent;
-}
+// ::-webkit-scrollbar {
+// 	width: 0px;
+// 	background: transparent;
+// }
 h1 {
 	font-size: 28px;
 	line-height: 28px;
@@ -187,6 +187,7 @@ nav {
 	}
 	.rows {
 		.row {
+			line-height: 20px;
 			width: calc(100% - 10px);
 			border: solid $red;
 			border-width: 1px 1px 0 1px;
@@ -228,7 +229,7 @@ nav {
 			figure {
 				ul {
 					padding: 0;
-					margin: 0;
+					margin: -5px 0 0 0;
 					list-style: none;
 					li {
 						margin: 0;
@@ -236,7 +237,10 @@ nav {
 							margin: 0 0 20px 0;
 						}
 						a {
+							display: block !important;
 							@include nounderline;
+							text-indent: -10px;
+					    margin-left: 10px;
 						}
 					}
 				}

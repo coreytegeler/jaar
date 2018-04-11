@@ -19,10 +19,6 @@ html, body {
   font-size: 16px;
   line-height: 25px; }
 
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent; }
-
 h1 {
   font-size: 28px;
   line-height: 28px;
@@ -170,6 +166,7 @@ nav {
   #card.show {
     margin-left: calc(50% - 362.5px); }
   #card .rows .row {
+    line-height: 20px;
     width: calc(100% - 10px);
     border: solid #d5404a;
     border-width: 1px 1px 0 1px;
@@ -205,15 +202,18 @@ nav {
       padding-top: 15px; }
       #card .figures.discography figure ul {
         padding: 0;
-        margin: 0;
+        margin: -5px 0 0 0;
         list-style: none; }
         #card .figures.discography figure ul li {
           margin: 0; }
           #card .figures.discography figure ul li.album_title {
             margin: 0 0 20px 0; }
           #card .figures.discography figure ul li a {
+            display: block !important;
             text-shadow: none !important;
-            background: none !important; }
+            background: none !important;
+            text-indent: -10px;
+            margin-left: 10px; }
     #card .figures.posters figure {
       display: -webkit-box;
       display: flex;
